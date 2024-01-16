@@ -1,0 +1,37 @@
+@tailwind utilities;
+
+@layer utilities {
+
+  .truncate-title-10 {
+    @apply whitespace-nowrap overflow-hidden overflow-ellipsis;
+    max-width: 10ch;
+  }
+  .truncate-title-20 {
+    @apply whitespace-nowrap overflow-hidden overflow-ellipsis;
+    max-width: 20ch;
+  }
+  .truncate-title-30 {
+    @apply whitespace-nowrap overflow-hidden overflow-ellipsis;
+    max-width: 30ch;
+  }
+  .truncate-title-40 {
+    @apply whitespace-nowrap overflow-hidden overflow-ellipsis;
+    max-width: 40ch;
+  }
+  .truncate-title-50 {
+    @apply whitespace-nowrap overflow-hidden overflow-ellipsis;
+    max-width: 50ch;
+  }
+
+  /* Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+  }
+}

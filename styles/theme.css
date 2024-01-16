@@ -1,0 +1,105 @@
+/* :root {
+  --background: #ffffff;
+  --text: #1d1b1e;
+}
+
+body {
+  background: var(--background);
+  color: var(--text);
+} */
+
+/* body {
+  --dot-bg: #f5f2f5;
+  --dot-color: #13131320;
+  --dot-size: 3px;
+  --dot-space: 22px;
+  background:
+    linear-gradient(90deg, var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
+    linear-gradient(var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
+    var(--dot-color);
+} */
+
+/* CSS */
+.footer-button {
+  all: unset;
+  width: 180px;
+  height: 60px;
+  background: transparent;
+  border: none;
+  position: relative;
+  color: #f0f0f0;
+  cursor: pointer;
+  z-index: 1;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.footer-button::after,
+.footer-button::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: -99999;
+  transition: all .4s;
+}
+
+.footer-button::before {
+  transform: translate(0%, 0%);
+  width: 100%;
+  height: 100%;
+  background: #28282d;
+  border-radius: 10px;
+}
+
+.footer-button::after {
+  transform: translate(10px, 10px);
+  width: 35px;
+  height: 35px;
+  background: #ffffff15;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border-radius: 50px;
+}
+
+.footer-button:hover::before {
+  transform: translate(5%, 20%);
+  width: 110%;
+  height: 110%;
+}
+
+.footer-button:hover::after {
+  border-radius: 10px;
+  transform: translate(0, 0);
+  width: 100%;
+  height: 100%;
+}
+
+.footer-button:active::after {
+  transition: 0s;
+  transform: translate(0, 5%);
+}
+
+.background-wavy {
+  background-color: #ffffff;
+  background-image: repeating-radial-gradient(circle at 0 0, transparent 0, #ffffff4b 17px),
+    repeating-linear-gradient(#6d6d6d55, #e7e5e5);
+}
+
+.background-polka {
+  background-color: #fffcff;
+  /* background-image: radial-gradient(#13131340 1.5px, transparent 1.5px), radial-gradient(#13131340 1.5px, #f5f2f5 1.05px);
+  background-size: 42px 42px;
+  background-position: 0 0, 21px 21px; */
+}
+
+.background-wavy-white {
+  background-color: #e5e5f7;
+  background-image: repeating-radial-gradient(circle at 0 0, transparent 0, #e5e5f78a 21px), repeating-linear-gradient(#ffffff55, #ffffff);
+}
