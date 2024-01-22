@@ -2,8 +2,8 @@ import Footer from "@/components/footer";
 import { SiteFooter } from "@/components/footer-bar";
 import HotBar from "@/components/hot-bar";
 import { Icons } from "@/components/icons";
-import NavigationBar from "@/components/navigation-bar";
-import NavigationMobile from "@/components/navigation-bar-mobile";
+import NavigationBar from "@/components/navigation/navigation-bar";
+import NavigationMobile from "@/components/navigation/navigation-bar-mobile";
 import Search from "@/components/search";
 import { Button } from "@/components/ui/button";
 

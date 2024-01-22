@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 
 import {
     Sheet,
@@ -9,8 +9,7 @@ import {
     SheetTrigger,
 } from "@/components/ui/sheet";
 import Link from "next/link";
-import { ScrollArea } from "./ui/scroll-area";
-import { Icons } from "./icons";
+import { Icons } from "../icons";
 
 const catu = [
     "ACCESSORIES",

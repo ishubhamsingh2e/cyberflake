@@ -1,7 +1,7 @@
 import React from "react";
-import { Icons } from "./icons";
+import { Icons } from "../icons";
 import { cn } from "@/lib/utils";
-import { UserNav } from "./user-account-nav";
+import { UserNav } from "../user-account-nav";
 import {
     Sheet,
     SheetContent,
@@ -12,9 +12,10 @@ import {
 } from "@/components/ui/sheet";
 
 import Navigation from "./navigation";
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 import Link from "next/link";
-import Search from "./search";
+import Search from "../search";
+import CartSide from "../cart/cart-side";
 
 function NavigationBar({ className }: { className?: string }) {
     return (
@@ -39,17 +40,13 @@ function NavigationBar({ className }: { className?: string }) {
                                     <Icons.bag className="h-6 w-6" />
                                 </Button>
                             </SheetTrigger>
-                            <SheetContent className="bg-slate-50">
+                            <SheetContent className="flex flex-col w-full px-1">
                                 <SheetHeader>
-                                    <SheetTitle>
-                                        Are you sure absolutely sure?
-                                    </SheetTitle>
-                                    <SheetDescription>
-                                        This action cannot be undone. This will
-                                        permanently delete your account and
-                                        remove your data from our servers.
-                                    </SheetDescription>
+                                    <SheetTitle>Your Cart</SheetTitle>
                                 </SheetHeader>
+                                <SheetDescription asChild>
+                                    <CartSide />
+                                </SheetDescription>
                             </SheetContent>
                         </Sheet>
                     </div>

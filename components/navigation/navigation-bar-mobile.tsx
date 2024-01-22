@@ -1,6 +1,6 @@
 import React from "react";
-import { Button } from "./ui/button";
-import { Icons } from "./icons";
+import { Button } from "../ui/button";
+import { Icons } from "../icons";
 
 import {
     Sheet,
@@ -11,8 +11,8 @@ import {
     SheetTrigger,
 } from "@/components/ui/sheet";
 import Link from "next/link";
-import { ScrollArea } from "./ui/scroll-area";
-import CartCard from "./cart-card";
+import { ScrollArea } from "../ui/scroll-area";
+import CartSide from "../cart/cart-side";
 
 function NavigationMobile() {
     return (
@@ -188,24 +188,8 @@ function NavigationMobile() {
                         <SheetHeader>
                             <SheetTitle>Your Cart</SheetTitle>
                         </SheetHeader>
-                        <SheetDescription className="flex" asChild>
-                            <div className="flex justify-between flex-col flex-grow gap-2">
-                                <div className="grow overflow-y-scroll">
-                                    <ScrollArea>
-                                            <CartCard />
-                                            <CartCard />
-                                            <CartCard />
-                                            <CartCard />
-                                            <CartCard />
-                                            <CartCard />
-                                    </ScrollArea>
-                                </div>
-                                <div className="shrink">
-                                    <Button className="w-full h-12">
-                                        Check Out
-                                    </Button>
-                                </div>
-                            </div>
+                        <SheetDescription asChild>
+                            <CartSide />
                         </SheetDescription>
                     </SheetContent>
                 </Sheet>

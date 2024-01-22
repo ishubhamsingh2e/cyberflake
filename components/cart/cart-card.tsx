@@ -1,10 +1,10 @@
 import React from "react";
-import { Icons } from "./icons";
-import { Button } from "./ui/button";
+import { Icons } from "../icons";
+import { Button } from "../ui/button";
 
 function CartCard() {
     return (
-        <div className="relative flex rounded-md shadow bg-slate-100 space-x-1 py-1 px-1">
+        <div className="relative flex rounded-md shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] bg-slate-50 space-x-1 py-1 px-1">
             <img
                 className="object-cover rounded mr-1"
                 src="https://placehold.co/100"
