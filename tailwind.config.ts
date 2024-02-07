@@ -83,7 +83,7 @@ const tailwindConfig: Config = {
         "scale-up-bl": "scale-up-bl 0.3s cubic-bezier(0.390, 0.575, 0.565, 1.000)   both"
       },
       boxShadow: {
-        elevated: "rgba(0, 0, 0, 0.09) 0px 3px 12px;",
+        elevated: "rgba(0, 0, 0, 0.09) 0px 3px 12px",
       }
     },
   },
