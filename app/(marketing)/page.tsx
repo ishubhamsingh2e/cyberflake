@@ -13,12 +13,8 @@ async function Home() {
 
     return (
         <>
-            {/* Hero Carousel */}
             <Carousel />
-
-            {/* Main Content */}
             <div className="mt-8 flex flex-col gap-y-16 lg:mt-20 lg:gap-y-36">
-                {/* Sales Section */}
                 <section className="flex flex-col gap-y-6">
                     <div className="space-y-3">
                         <p className="text-sm font-semibold">
@@ -40,8 +36,6 @@ async function Home() {
                         ></video>
                     </div>
                 </section>
-
-                {/* Latest Deals Section */}
                 <section className="flex flex-col gap-y-6">
                     <div className="space-y-3">
                         <p className="text-sm font-semibold">
@@ -66,8 +60,6 @@ async function Home() {
                         ))}
                     </div>
                 </section>
-
-                {/* Hand Picked Section */}
                 <section className="flex flex-col gap-y-6">
                     <div className="space-y-3">
                         <p className="text-sm font-semibold">

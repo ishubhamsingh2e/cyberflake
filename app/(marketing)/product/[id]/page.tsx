@@ -69,7 +69,6 @@ async function ProductPage({ params: { id } }: Props) {
                     <div className="flex justify-between">
                         <span>
                             <a
-                                className={buttonVariants({ variant: "ghost" })}
                                 href="#"
                             >
                                 MSI
@@ -192,22 +191,6 @@ async function ProductPage({ params: { id } }: Props) {
             <div className="flex gap-x-2 lg:gap-x-8">
                 <Description />
             </div>
-            {/* <section className='space-y-6'>
-                <h1 className='text-3xl font-semibold'>Frequently Bought Together</h1>
-                <div className='grid grid-cols-5 gap-4'>
-                    {products.map((product) => (
-                        <Card className='my-1 shadow-sm' key={product.id} title={product.title} price={product.price} discount={product.price} image={'https://placehold.co/400x400'} link="#" />
-                    ))}
-                </div>
-            </section>
-            <section className='space-y-6'>
-                <h1 className='text-3xl font-semibold'>Similar Products</h1>
-                <div className='grid grid-cols-5 gap-4'>
-                    {products.map((product) => (
-                        <Card className='my-1 shadow-sm' key={product.id} title={product.title} price={product.price} discount={product.price} image={'https://placehold.co/400x400'} link="#" />
-                    ))}
-                </div>
-            </section> */}
         </div>
     );
 }

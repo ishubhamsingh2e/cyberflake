@@ -15,26 +15,26 @@ function Footer({ className }: { className?: string }) {
                         <p className="text-md text-slate-500 lg:text-xl">
                             Unlocking Excellence in Every Pixel: Meet our
                             Cyberflake Crew for All Your Business Brilliance!
-                            🌐✨ We're not just a team; we're your digital dream
-                            weavers, crafting success with every keystroke. Join
-                            forces with us, and let's cyber-sizzle your business
-                            to new heights! 🔥🚀 #CyberflakeCrew
-                            #BusinessBrilliance
+                            🌐✨ We&apos;re not just a team; we&apos;re your
+                            digital dream weavers, crafting success with every
+                            keystroke. Join forces with us, and let&apos;s
+                            cyber-sizzle your business to new heights! 🔥🚀
+                            #CyberflakeCrew #BusinessBrilliance
                         </p>
                     </div>
                     <button className="relative h-28 w-full rounded-md border bg-primary pl-4 pt-16 text-left text-slate-50 shadow-elevated transition duration-500 ease-in-out hover:bg-primary/90 lg:w-64">
                         <Icons.arrowRightTop className="absolute right-0 top-0 mr-2 mt-2 h-8 w-8" />
-                        Let's Chat
+                        Let&apos;s Chat
                     </button>
                 </div>
                 <div className="hidden lg:block">
                     <p className="text-lg text-slate-500 lg:text-xl">
                         Unlocking Excellence in Every Pixel: Meet our Cyberflake
-                        Crew for All Your Business Brilliance! 🌐✨ We're not
-                        just a team; we're your digital dream weavers, crafting
-                        success with every keystroke. Join forces with us, and
-                        let's cyber-sizzle your business to new heights! 🔥🚀
-                        #CyberflakeCrew #BusinessBrilliance
+                        Crew for All Your Business Brilliance! 🌐✨ We&apos;re
+                        not just a team; we&apos;re your digital dream weavers,
+                        crafting success with every keystroke. Join forces with
+                        us, and let&apos;s cyber-sizzle your business to new
+                        heights! 🔥🚀 #CyberflakeCrew #BusinessBrilliance
                     </p>
                 </div>
             </div>
@@ -68,7 +68,7 @@ function Footer({ className }: { className?: string }) {
                     </button>
                     <button className="relative h-28 w-full rounded-md border bg-primary pl-4 pt-16 text-left text-slate-50 shadow-elevated transition duration-500 ease-in-out hover:bg-primary/90 xl:w-64">
                         <Icons.arrowRightTop className="absolute right-0 top-0 mr-2 mt-2 h-8 w-8" />
-                        Bussiness Order
+                        Business Order
                     </button>
                 </div>
             </div>

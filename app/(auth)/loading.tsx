@@ -3,13 +3,13 @@
 import { Icons } from "@/components/icons";
 import React, { useState, useEffect } from "react";
 
-function loading() {
+function Loading() {
     const [currentIcon, setCurrentIcon] = useState(1);
 
     useEffect(() => {
         const interval = setInterval(() => {
             setCurrentIcon((prevIcon) => (prevIcon % 3) + 1);
-        }, 1500); // Change the duration as needed
+        }, 1500);
 
         return () => clearInterval(interval);
     }, []);
@@ -49,4 +49,4 @@ function loading() {
     );
 }
 
-export default loading;
+export default Loading;
