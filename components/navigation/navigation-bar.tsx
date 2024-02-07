@@ -15,7 +15,7 @@ import Navigation from "./navigation";
 import { Button } from "../ui/button";
 import Link from "next/link";
 import Search from "../search";
-import CartSide from "../cart/cart-side";
+import { Cart } from "../cart";
 
 function NavigationBar({ className }: { className?: string }) {
     return (
@@ -45,7 +45,7 @@ function NavigationBar({ className }: { className?: string }) {
                                     <SheetTitle>Your Cart</SheetTitle>
                                 </SheetHeader>
                                 <SheetDescription asChild>
-                                    <CartSide />
+                                    <Cart />
                                 </SheetDescription>
                             </SheetContent>
                         </Sheet>

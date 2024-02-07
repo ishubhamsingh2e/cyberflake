@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/sheet";
 import Link from "next/link";
 import { ScrollArea } from "../ui/scroll-area";
-import CartSide from "../cart/cart-side";
+import { Cart } from "@/components/cart";
 
 function NavigationMobile() {
     return (
@@ -189,7 +189,7 @@ function NavigationMobile() {
                             <SheetTitle>Your Cart</SheetTitle>
                         </SheetHeader>
                         <SheetDescription asChild>
-                            <CartSide />
+                            <Cart />
                         </SheetDescription>
                     </SheetContent>
                 </Sheet>
