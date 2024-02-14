@@ -2215,6 +2215,11 @@ jiti@^1.19.1:
   resolved "https://registry.yarnpkg.com/jiti/-/jiti-1.21.0.tgz#7c97f8fe045724e136a397f7340475244156105d"
   integrity sha512-gFqAIbuKyyso/3G2qhiO2OM6shY6EPP/R0+mkDbyspxKazh8BXDC5FiFsUjlczgdNz/vfra0da2y+aHrusLG/Q==
 
+js-cookie@^3.0.5:
+  version "3.0.5"
+  resolved "https://registry.yarnpkg.com/js-cookie/-/js-cookie-3.0.5.tgz#0b7e2fd0c01552c58ba86e0841f94dc2557dcdbc"
+  integrity sha512-cEiJEAEoIbWfCZYKWhVwFuvPX1gETRYPw6LlaTKoxD3s2AkXzkCjnp6h0V77ozyqj0jakteJ4YqDJT830+lVGw==
+
 "js-tokens@^3.0.0 || ^4.0.0":
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-4.0.0.tgz#19203fb59991df98e3a287050d4647cdeaf32499"
@@ -2407,6 +2412,13 @@ new@^0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/new/-/new-0.1.1.tgz#e378203be64b404a6a95aa809a35ea98f3907972"
   integrity sha512-et66JzEf07vnDYRrJrRd6IEZvbb4c69ksiLWzHoKzlCgXJgipIIQdmSUvoKJByWPQMyt5yuUF/00e509IMrj+A==
+
+next-client-cookies@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/next-client-cookies/-/next-client-cookies-1.1.0.tgz#34c7a3345da0388ea396531bcab3167774a6357a"
+  integrity sha512-e/rqQTXHSFuvUJELMeCDgM7dWW6IUNOGr7noWyRSgE/5l033UaqseDrjShfRZYG45JnrYKoX653OdXTJ8cn+NA==
+  dependencies:
+    js-cookie "^3.0.5"
 
 next@^14.1.0:
   version "14.1.0"

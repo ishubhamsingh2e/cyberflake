@@ -13,6 +13,7 @@ import {
 import Link from "next/link";
 import { ScrollArea } from "../ui/scroll-area";
 import { Cart } from "@/components/cart";
+import { Categories } from "./navigation";
 
 function NavigationMobile() {
     return (
@@ -26,155 +27,14 @@ function NavigationMobile() {
                     </Button>
                     <span className="text-sm">Home</span>
                 </div>
-                <Sheet>
-                    <SheetTrigger asChild>
-                        <div className="flex flex-col items-center">
-                            <Button variant={"ghost"} size={"icon"}>
-                                <Icons.category className="h-6 w-6" />
-                            </Button>
-                            <span className="text-sm">category</span>
-                        </div>
-                    </SheetTrigger>
-                    <SheetContent className="h-full w-full">
-                        <SheetDescription
-                            className="h-full items-center"
-                            asChild
-                        >
-                            <ScrollArea className="py-5">
-                                <ul className="space-y-6 text-center">
-                                    <li>
-                                        <Link
-                                            href={"#"}
-                                            className="text-3xl text-primary"
-                                        >
-                                            ACCESSORIES
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link
-                                            href={"#"}
-                                            className="text-3xl text-primary"
-                                        >
-                                            CABINET FANS
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link
-                                            href={"#"}
-                                            className="text-3xl text-primary"
-                                        >
-                                            KEYBOARD/MOUSE COMBO
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link
-                                            href={"#"}
-                                            className="text-3xl text-primary"
-                                        >
-                                            MOUSE
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link
-                                            href={"#"}
-                                            className="text-3xl text-primary"
-                                        >
-                                            MOUSEPAD
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link
-                                            href={"#"}
-                                            className="text-3xl text-primary"
-                                        >
-                                            PROCESSOR
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link
-                                            href={"#"}
-                                            className="text-3xl text-primary"
-                                        >
-                                            SSD
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link
-                                            href={"#"}
-                                            className="text-3xl text-primary"
-                                        >
-                                            ROUTERS
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link
-                                            href={"#"}
-                                            className="text-3xl text-primary"
-                                        >
-                                            ACCESSORIES
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link
-                                            href={"#"}
-                                            className="text-3xl text-primary"
-                                        >
-                                            CABINET FANS
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link
-                                            href={"#"}
-                                            className="text-3xl text-primary"
-                                        >
-                                            KEYBOARD/MOUSE COMBO
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link
-                                            href={"#"}
-                                            className="text-3xl text-primary"
-                                        >
-                                            MOUSE
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link
-                                            href={"#"}
-                                            className="text-3xl text-primary"
-                                        >
-                                            MOUSEPAD
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link
-                                            href={"#"}
-                                            className="text-3xl text-primary"
-                                        >
-                                            PROCESSOR
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link
-                                            href={"#"}
-                                            className="text-3xl text-primary"
-                                        >
-                                            SSD
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link
-                                            href={"#"}
-                                            className="text-3xl text-primary"
-                                        >
-                                            ROUTERS
-                                        </Link>
-                                    </li>
-                                </ul>
-                            </ScrollArea>
-                        </SheetDescription>
-                    </SheetContent>
-                </Sheet>
+                <Categories>
+                    <div className="flex flex-col items-center">
+                        <Button variant={"ghost"} size={"icon"}>
+                            <Icons.category className="h-6 w-6" />
+                        </Button>
+                        <span className="text-sm">category</span>
+                    </div>
+                </Categories>
                 <Sheet>
                     <SheetTrigger asChild>
                         <div className="flex flex-col items-center">

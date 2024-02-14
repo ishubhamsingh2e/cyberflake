@@ -7,3 +7,9 @@ export interface Product {
     discountPrice?: number;
     quantity: number;
 }
+
+export interface JwtPayload {
+    name: string;
+    phone: string;
+    exp: number;
+}

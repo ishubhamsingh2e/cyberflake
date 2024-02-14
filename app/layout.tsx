@@ -9,6 +9,8 @@ import "@/styles/embla.css";
 import "@splidejs/react-splide/css";
 import { Toaster } from "@/components/ui/toaster";
 
+import { CookiesProvider } from "next-client-cookies/server";
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -24,7 +26,7 @@ export default function RootLayout({
     return (
         <html lang="en" className="scroll-smooth">
             <body className={inter.className}>
-                {children}
+                <CookiesProvider>{children}</CookiesProvider>
                 <Toaster />
             </body>
         </html>

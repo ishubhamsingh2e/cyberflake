@@ -39,6 +39,7 @@ import {
     LucideHome,
     Trash2,
     LucideIcon,
+    MessageCircle,
 } from "lucide-react";
 
 export type Icon = LucideIcon;
@@ -218,8 +219,8 @@ export const Icons = {
                     y2="101.226"
                     gradientUnits="userSpaceOnUse"
                 >
-                    <stop stop-color="#EF7AA5" />
-                    <stop offset="1" stop-color="#FFD09D" />
+                    <stop stopColor="#EF7AA5" />
+                    <stop offset="1" stopColor="#FFD09D" />
                 </linearGradient>
                 <linearGradient
                     id="paint1_linear_258_21"
@@ -229,8 +230,8 @@ export const Icons = {
                     y2="157.161"
                     gradientUnits="userSpaceOnUse"
                 >
-                    <stop stop-color="#EF7AA5" />
-                    <stop offset="1" stop-color="#FFD09D" />
+                    <stop stopColor="#EF7AA5" />
+                    <stop offset="1" stopColor="#FFD09D" />
                 </linearGradient>
                 <linearGradient
                     id="paint2_linear_258_21"
@@ -240,8 +241,8 @@ export const Icons = {
                     y2="139.089"
                     gradientUnits="userSpaceOnUse"
                 >
-                    <stop stop-color="#EF7AA5" />
-                    <stop offset="1" stop-color="#FFD09D" />
+                    <stop stopColor="#EF7AA5" />
+                    <stop offset="1" stopColor="#FFD09D" />
                 </linearGradient>
                 <linearGradient
                     id="paint3_linear_258_21"
@@ -251,8 +252,8 @@ export const Icons = {
                     y2="23.9202"
                     gradientUnits="userSpaceOnUse"
                 >
-                    <stop stop-color="#EF7AA5" />
-                    <stop offset="1" stop-color="#FFD09D" />
+                    <stop stopColor="#EF7AA5" />
+                    <stop offset="1" stopColor="#FFD09D" />
                 </linearGradient>
             </defs>
         </svg>
@@ -437,4 +438,5 @@ export const Icons = {
             />
         </svg>
     ),
+    support: MessageCircle,
 };

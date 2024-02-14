@@ -1,3 +1,5 @@
+"use client";
+
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
@@ -10,11 +12,38 @@ import {
     DropdownMenuShortcut,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { apiClient } from "@/lib/api";
+import { deleteCookie, setCookie } from "@/lib/cookie";
+import React from "react";
+import { Icons } from "./icons";
 
 export function UserNav() {
+    const [name, setName] = React.useState<string>("");
+    const [phone, SetPhone] = React.useState<string>("");
+
+    React.useEffect(() => {
+        apiClient.getUser().then((res) => {
+            if (res) {
+                setName(res.user.name);
+                SetPhone(res.user.phone);
+                setCookie("JWT", res.user.token, 7);
+            } else {
+                alert("can't get user!");
+            }
+        });
+    });
+
+    function logout() {
+        deleteCookie("JWT");
+        location.reload();
+    }
+
     return (
         <DropdownMenu>
-            <DropdownMenuTrigger asChild>
+            <DropdownMenuTrigger
+                asChild
+                disabled={!(name !== "" && phone !== "")}
+            >
                 <Button
                     variant="ghost"
                     size={"icon"}
@@ -35,34 +64,26 @@ export function UserNav() {
                 <DropdownMenuLabel className="font-normal">
                     <div className="flex flex-col space-y-1">
                         <p className="text-sm font-medium leading-none">
-                            shadcn
+                            {name}
                         </p>
                         <p className="text-xs leading-none text-muted-foreground">
-                            m@example.com
+                            (+91) {phone}
                         </p>
                     </div>
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuGroup>
-                    <DropdownMenuItem>
-                        Profile
-                        <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
+                    <DropdownMenuItem disabled>
+                        <Icons.heart className="mr-1 h-4 w-4 text-pink-500 fill-pink-500" />
+                        Wishlist
                     </DropdownMenuItem>
-                    <DropdownMenuItem>
-                        Billing
-                        <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
+                    <DropdownMenuItem disabled>
+                        <Icons.support className="mr-1 h-4 w-4 text-yellow-500 fill-yellow-500" />
+                        Support!
                     </DropdownMenuItem>
-                    <DropdownMenuItem>
-                        Settings
-                        <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
-                    </DropdownMenuItem>
-                    <DropdownMenuItem>New Team</DropdownMenuItem>
                 </DropdownMenuGroup>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem>
-                    Log out
-                    <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
-                </DropdownMenuItem>
+                <DropdownMenuItem onClick={logout}>Log out</DropdownMenuItem>
             </DropdownMenuContent>
         </DropdownMenu>
     );
