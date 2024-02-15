@@ -5,27 +5,50 @@ import Card from "@/components/product-card";
 import { Icons } from "@/components/icons";
 import { Separator } from "@/components/ui/separator";
 import { Input } from "@/components/ui/input";
+import { useSearchParams } from "next/navigation";
+
+interface Image {
+    id: number;
+    product: number;
+    image: string;
+}
 
 function Products() {
     const [productsData, setProductsData] = useState([]);
+    const [productImageData, setProductImageData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [minPriceFilter, setMinPriceFilter] = useState("");
     const [maxPriceFilter, setMaxPriceFilter] = useState("");
 
+    const search = useSearchParams();
+
+    function findImageById(idToFind: number): Image | undefined {
+        if (!productImageData) {
+            return {
+                id: 1,
+                product: 1,
+                image: "https://placehold.co/600",
+            };
+        }
+        return productImageData.find((image) => image.id === idToFind);
+    }
+
     useEffect(() => {
         async function getProducts() {
             try {
-                const res = await fetch("https://dummyjson.com/products");
-                const products = (await res.json()).products;
-                return products.slice(0, 10);
+                const res = await fetch(
+                    `https://api.cyberflake.in/search/?query=${search.get("q")}`,
+                );
+                const data = await res.json();
+                setProductsData(data.products);
+                setProductImageData(data.images);
             } catch (error) {
                 console.error("Error fetching products:", error);
                 return [];
             }
         }
 
-        getProducts().then((data) => {
-            setProductsData(data);
+        getProducts().then(() => {
             setIsLoading(false);
         });
     }, []);
@@ -104,13 +127,19 @@ function Products() {
                             <Card
                                 className="my-1 shadow-elevated"
                                 key={product.id}
-                                title={product.title}
-                                price={product.price}
-                                discount={product.price}
-                                image={product.images[0]}
+                                title={product.name}
+                                brand={product.brand.name}
+                                price={product.regular_price}
+                                discount={product.MRP}
+                                image={`https://api.cyberflake.in${product.thumbnail}`}
                                 link={`product/${product.id}/`}
                             />
                         ))}
+                    </div>
+                )}
+                {productsData.length === 0 && !isLoading && (
+                    <div className="flex justify-center py-16">
+                        <p>No products found.</p>
                     </div>
                 )}
             </div>

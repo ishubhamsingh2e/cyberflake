@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 
 interface CardProps {
     title: string;
+    brand: string;
     price: number;
     discount: number;
     image: string;
@@ -12,7 +13,15 @@ interface CardProps {
     className?: string;
 }
 
-function Card({ title, price, discount, image, link, className }: CardProps) {
+function Card({
+    title,
+    brand,
+    price,
+    discount,
+    image,
+    link,
+    className,
+}: CardProps) {
     return (
         <div
             className={cn(
@@ -38,7 +47,7 @@ function Card({ title, price, discount, image, link, className }: CardProps) {
                 </a>
                 <a href="#">
                     <h6 className="text-sm tracking-tighter text-slate-400 underline-offset-1 hover:text-primary hover:underline">
-                        Razer
+                        {brand}
                     </h6>
                 </a>
                 <div className="mb-5 mt-2 flex items-center justify-between">
@@ -59,6 +68,7 @@ function Card({ title, price, discount, image, link, className }: CardProps) {
                 </div>
                 <div className="flex justify-end gap-x-1">
                     <Button
+                        disabled
                         variant={"outline"}
                         size={"icon"}
                         className="flex-shrink shadow-sm"
