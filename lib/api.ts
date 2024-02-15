@@ -176,4 +176,4 @@ class ApiClient {
     }
 }
 
-export const apiClient = new ApiClient("http://127.0.0.1:8000");
+export const apiClient = new ApiClient("https://api.cyberflake.in");
