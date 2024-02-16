@@ -121,10 +121,16 @@ async function ProductPage({ params: { sku } }: Props) {
                     <div className="space-y-6">
                         <div className="flex gap-x-2">
                             <span className="text-2xl font-bold lg:text-4xl">
-                                ₹{product.regular_price}
+                                ₹
+                                {Intl.NumberFormat("en-IN", {
+                                    maximumSignificantDigits: 3,
+                                }).format(product.regular_price)}
                             </span>
                             <span className="text-md text-slate-400 line-through">
-                                ₹{product.MRP}
+                                ₹
+                                {Intl.NumberFormat("en-IN", {
+                                    maximumSignificantDigits: 3,
+                                }).format(product.MRP)}
                             </span>
                         </div>
                         <div className="space-y-3">
