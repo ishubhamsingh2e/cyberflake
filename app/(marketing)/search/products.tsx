@@ -7,31 +7,13 @@ import { Separator } from "@/components/ui/separator";
 import { Input } from "@/components/ui/input";
 import { useSearchParams } from "next/navigation";
 
-interface Image {
-    id: number;
-    product: number;
-    image: string;
-}
-
 function Products() {
     const [productsData, setProductsData] = useState([]);
-    const [productImageData, setProductImageData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [minPriceFilter, setMinPriceFilter] = useState("");
     const [maxPriceFilter, setMaxPriceFilter] = useState("");
 
     const search = useSearchParams();
-
-    function findImageById(idToFind: number): Image | undefined {
-        if (!productImageData) {
-            return {
-                id: 1,
-                product: 1,
-                image: "https://placehold.co/600",
-            };
-        }
-        return productImageData.find((image) => image.id === idToFind);
-    }
 
     useEffect(() => {
         async function getProducts() {
@@ -41,7 +23,6 @@ function Products() {
                 );
                 const data = await res.json();
                 setProductsData(data.products);
-                setProductImageData(data.images);
             } catch (error) {
                 console.error("Error fetching products:", error);
                 return [];
@@ -132,7 +113,7 @@ function Products() {
                                 price={product.regular_price}
                                 discount={product.MRP}
                                 image={`https://api.cyberflake.in${product.thumbnail}`}
-                                link={`product/${product.id}/`}
+                                link={`product/${product.SKU}/`}
                             />
                         ))}
                     </div>

@@ -12,17 +12,18 @@ import {
 } from "@/components/ui/tooltip";
 import ThumbnailCarousel from "@/components/carousel/thumbnail";
 import { DigitInput } from "@/components/ui/digit-input";
-import { buttonVariants } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import Description from "./components/description";
 import { Button } from "@/components/ui/button";
 import SKUButton from "./components/sku-button";
 import { Icons } from "@/components/icons";
 import type { Metadata } from "next";
+import { SpecsTable } from "./components/specs";
+
+import { redirect } from "next/navigation";
 
 type Props = {
     params: {
-        id: string;
+        sku: string;
     };
 };
 
@@ -31,53 +32,69 @@ export var metadata: Metadata = {
     description: "Cyberflake is a social media platform for developers.",
 };
 
-const description = `
-    <ul>
-        <li>8GB 256-Bit GDDR6</li>
-        <li>Boost Clock 1750 MHz</li>
-        <li>1 x HDMI 2.1 3 x DisplayPort 1.4a</li>
-        <li>3840 Stream Processors</li>
-        <li>PCI Express 4.0</li>
-    </ul>
-`;
-
-async function getProduct(id: number) {
-    const query = await fetch("https://api.escuelajs.co/api/v1/products");
-    const response = await query.json();
-    return response[id];
+interface DescriptionProp {
+    html: string;
+    specifications: Array<{ attribute: string; value: string }>;
 }
 
-async function ProductPage({ params: { id } }: Props) {
-    const product = await getProduct(Number(id));
+function Description({ html, specifications }: DescriptionProp) {
+    return (
+        <div className="description">
+            <h1 className="text-center text-2xl font-semibold lg:text-3xl">
+                Description
+            </h1>
+            <div className="grid-cols-2 space-y-8 py-8 lg:grid lg:gap-x-12 lg:space-y-0 lg:p-12">
+                <div>
+                    <div
+                        className="space-y-4 text-[14px]"
+                        dangerouslySetInnerHTML={{
+                            __html: html,
+                        }}
+                    />
+                </div>
+                <div>
+                    <SpecsTable specs={specifications} />
+                </div>
+            </div>
+        </div>
+    );
+}
 
-    metadata.title = `${product.id}: ${product.title}`;
-    metadata.description = product.description;
+async function getProduct(sku: string) {
+    const query = await fetch(`http://127.0.0.1:8000/product/${sku}/`);
+    console.log(sku);
+    const response = await query.json();
+
+    if (!response.product) {
+        redirect(`/404`);
+    }
+
+    return response.product;
+}
+
+async function ProductPage({ params: { sku } }: Props) {
+    console.log(sku);
+    const product = await getProduct(sku);
+
+    metadata.title = `${product.name}`;
+    metadata.description = product.full_description;
 
     return (
         <div className="space-y-16 lg:space-y-24">
             <div className="grid-cols-5 gap-8 lg:grid">
                 <ThumbnailCarousel
                     className="col-span-2"
-                    images={[
-                        product.category.image,
-                        product.category.image,
-                        product.category.image,
-                        product.category.image,
-                    ]}
+                    images={product.images}
                 />
                 <div className="col-span-3 mt-6 flex flex-col gap-y-5 lg:mt-0 lg:gap-y-8">
                     <div className="flex justify-between">
                         <span>
-                            <a
-                                href="#"
-                            >
-                                MSI
-                            </a>
+                            <a href="#">{product.brand.name}</a>
                         </span>
                         <TooltipProvider>
                             <Tooltip>
                                 <TooltipTrigger asChild>
-                                    <SKUButton SKU="GR87U8FAH" />
+                                    <SKUButton SKU={product.SKU} />
                                 </TooltipTrigger>
                                 <TooltipContent className="border bg-white font-medium text-zinc-900 shadow-sm">
                                     Click to Copy
@@ -86,9 +103,7 @@ async function ProductPage({ params: { id } }: Props) {
                         </TooltipProvider>
                     </div>
                     <h1 className="text-xl font-semibold lg:text-3xl">
-                        {product.title}: Intel Core™ i9-13900K(24 CORES(16
-                        E-cores/8 P-cores/32 THREADS), 32M Cache, 5.80 GHz Max)
-                        Processor
+                        {product.name}
                     </h1>
                     <div className="flex flex-col gap-5">
                         <div className="flex gap-5">
@@ -99,7 +114,7 @@ async function ProductPage({ params: { id } }: Props) {
                                 <div
                                     className="space-y-4 text-[0.9em]"
                                     dangerouslySetInnerHTML={{
-                                        __html: description,
+                                        __html: product.short_description,
                                     }}
                                 />
                             </div>
@@ -108,10 +123,10 @@ async function ProductPage({ params: { id } }: Props) {
                     <div className="space-y-6">
                         <div className="flex gap-x-2">
                             <span className="text-2xl font-bold lg:text-4xl">
-                                ₹45,000
+                                ₹{product.regular_price}
                             </span>
                             <span className="text-md text-slate-400 line-through">
-                                ₹50,000
+                                ₹{product.MRP}
                             </span>
                         </div>
                         <div className="space-y-3">
@@ -122,7 +137,7 @@ async function ProductPage({ params: { id } }: Props) {
                                 <p className="text-md font-semibold text-slate-500">
                                     Only{" "}
                                     <span className="text-md text-primary">
-                                        12 items
+                                        {product.Inventory} items
                                     </span>{" "}
                                     left!
                                     <br />
@@ -189,7 +204,10 @@ async function ProductPage({ params: { id } }: Props) {
             </div>
             <Separator />
             <div className="flex gap-x-2 lg:gap-x-8">
-                <Description />
+                <Description
+                    html={product.full_description}
+                    specifications={product.specifications}
+                />
             </div>
         </div>
     );

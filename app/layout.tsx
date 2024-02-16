@@ -6,6 +6,7 @@ import "@/styles/theme.css";
 import "@/styles/utils.css";
 import "@/styles/mods.css";
 import "@/styles/embla.css";
+import "@/styles/description.css";
 import "@splidejs/react-splide/css";
 import { Toaster } from "@/components/ui/toaster";
 
