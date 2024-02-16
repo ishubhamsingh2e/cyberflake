@@ -92,7 +92,7 @@ function ThumbnailCarousel({ images, className }: ThumbnailCarouselProps) {
                                 }}
                             >
                                 <img
-                                    src={`http://127.0.0.1:8000${thumb.image}`}
+                                    src={`https://api.cyberflake.in${thumb.image}`}
                                     alt="thumbnail"
                                     className="object-cover rounded-sm"
                                 />
