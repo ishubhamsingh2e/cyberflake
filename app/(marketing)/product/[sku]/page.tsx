@@ -62,7 +62,6 @@ function Description({ html, specifications }: DescriptionProp) {
 
 async function getProduct(sku: string) {
     const query = await fetch(`http://127.0.0.1:8000/product/${sku}/`);
-    console.log(sku);
     const response = await query.json();
 
     if (!response.product) {
@@ -73,7 +72,6 @@ async function getProduct(sku: string) {
 }
 
 async function ProductPage({ params: { sku } }: Props) {
-    console.log(sku);
     const product = await getProduct(sku);
 
     metadata.title = `${product.name}`;

@@ -6,7 +6,9 @@ import { Icons } from "../icons";
 import { cn } from "@/lib/utils";
 
 interface ThumbnailCarouselProps {
-    images: string[];
+    images: {
+        image: string;
+    }[];
     className?: string;
 }
 
