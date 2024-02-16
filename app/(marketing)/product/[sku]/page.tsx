@@ -61,7 +61,9 @@ function Description({ html, specifications }: DescriptionProp) {
 }
 
 async function getProduct(sku: string) {
-    const query = await fetch(`http://127.0.0.1:8000/product/${sku}/`);
+    const query = await fetch(`http://127.0.0.1:8000/product/${sku}/`, {
+        cache: "no-store",
+    });
     const response = await query.json();
 
     if (!response.product) {
