@@ -68,7 +68,7 @@ function ThumbnailCarousel({ images, className }: ThumbnailCarouselProps) {
                                 className="flex-[0_0_100%] w-full  mx-4 overflow-hidden"
                             >
                                 <img
-                                    src={`http://127.0.0.1:8000${slide.image}`}
+                                    src={`https://api.cyberflake.in${slide.image}`}
                                     alt="sample"
                                     className="w-full h-full object-cover rounded-lg"
                                 />
