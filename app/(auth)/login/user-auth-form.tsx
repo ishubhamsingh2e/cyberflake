@@ -68,11 +68,14 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
             await apiClient.verifyOTP(phone, OTP).then((res) => {
                 if (res.success) {
                     setCookie("JWT", res.token, 7);
-                    if (!newUser) {
+                    if (newUser) {
+                        alert(newUser ? "New user!" : "Existing user!");
                         window.location.href = "/";
                     } else {
                         setIsVerified(true);
                     }
+                } else {
+                    alert("Invalid OTP");
                 }
             });
             setIsLoading(false);
