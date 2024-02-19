@@ -51,6 +51,7 @@ async function Home() {
                             <Card
                                 className="my-1 shadow-elevated"
                                 key={product.id}
+                                id={product.id}
                                 brand="RAZOR"
                                 title={product.title}
                                 price={product.price}
@@ -76,6 +77,7 @@ async function Home() {
                             <Card
                                 className="my-1 shadow-elevated"
                                 key={product.id}
+                                id={product.id}
                                 title={product.title}
                                 brand="RAZOR"
                                 price={product.price}

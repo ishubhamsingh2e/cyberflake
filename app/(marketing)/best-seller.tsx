@@ -50,6 +50,7 @@ function BestSeller() {
                         <SplideSlide key={key} aria-label="Trending">
                             <Card
                                 key={product.id}
+                                id={product.id}
                                 brand="RAZOR"
                                 title={product.title}
                                 price={product.price}
@@ -87,6 +88,7 @@ function BestSeller() {
                         <SplideSlide key={key} aria-label="Trending">
                             <Card
                                 key={product.id}
+                                id={product.id}
                                 brand="RAZOR"
                                 title={product.title}
                                 price={product.price}

@@ -108,6 +108,7 @@ function Products() {
                             <Card
                                 className="my-1 shadow-elevated"
                                 key={product.id}
+                                id={product.id}
                                 title={product.name}
                                 brand={product.brand.name}
                                 price={product.regular_price}

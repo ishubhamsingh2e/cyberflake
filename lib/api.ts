@@ -174,6 +174,119 @@ class ApiClient {
             xhr.send();
         });
     }
+
+    async getCart(): Promise<any> {
+        return new Promise((resolve, reject) => {
+            const url = `${this.baseUrl}/cart/`;
+            const xhr = new XMLHttpRequest();
+
+            xhr.open("GET", url, true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+            const JWT = getCookie("JWT");
+
+            if (!JWT) {
+                return {
+                    status: 401,
+                }
+            }
+
+            xhr.setRequestHeader("JWT", JWT);
+
+            xhr.onreadystatechange = () => {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    try {
+                        resolve(this.handleResponse(xhr));
+                    } catch (error) {
+                        this.handleError(error, reject);
+                    }
+                }
+            };
+
+            xhr.onerror = () => {
+                this.handleError(new Error("Network error"), reject);
+            };
+
+            xhr.send();
+        });
+    }
+
+    async addToCart(product_id: number, quantity: number): Promise<any> {
+        return new Promise((resolve, reject) => {
+            const url = `${this.baseUrl}/add-to-cart/`;
+            const xhr = new XMLHttpRequest();
+
+            xhr.open("POST", url, true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+            const JWT = getCookie("JWT");
+
+            if (!JWT) {
+                return {
+                    status: 401,
+                }
+            }
+            xhr.setRequestHeader("JWT", JWT);
+
+            xhr.onreadystatechange = () => {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    try {
+                        resolve(this.handleResponse(xhr));
+                    } catch (error) {
+                        this.handleError(error, reject);
+                    }
+                }
+            };
+
+            xhr.onerror = () => {
+                this.handleError(new Error("Network error"), reject);
+            };
+
+            const payload = new URLSearchParams();
+            payload.append("product_id", product_id.toString());
+            payload.append("quantity", quantity.toString());
+
+            xhr.send(payload.toString());
+        });
+    }
+
+    async deleteFromCart(id: number): Promise<any> {
+        return new Promise((resolve, reject) => {
+            const url = `${this.baseUrl}/remove-from-cart/`;
+            const xhr = new XMLHttpRequest();
+
+            xhr.open("POST", url, true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            const JWT = getCookie("JWT");
+
+            if (!JWT) {
+                return {
+                    status: 401,
+                }
+            }
+
+            xhr.setRequestHeader("JWT", JWT);
+
+            xhr.onreadystatechange = () => {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    try {
+                        resolve(this.handleResponse(xhr));
+                    } catch (error) {
+                        this.handleError(error, reject);
+                    }
+                }
+            };
+
+            xhr.onerror = () => {
+                this.handleError(new Error("Network error"), reject);
+            };
+
+            const payload = new URLSearchParams();
+            payload.append("id", id.toString());
+
+            xhr.send(payload.toString());
+        });
+    }
 }
 
 export const apiClient = new ApiClient("https://api.cyberflake.in");

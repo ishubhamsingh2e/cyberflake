@@ -11,15 +11,13 @@ import {
     TooltipTrigger,
 } from "@/components/ui/tooltip";
 import ThumbnailCarousel from "@/components/carousel/thumbnail";
-import { DigitInput } from "@/components/ui/digit-input";
 import { Separator } from "@/components/ui/separator";
-import { Button } from "@/components/ui/button";
 import SKUButton from "./components/sku-button";
-import { Icons } from "@/components/icons";
 import type { Metadata } from "next";
 import { SpecsTable } from "./components/specs";
 
 import { redirect } from "next/navigation";
+import AddToCart from "./client-side/add-to-cart";
 
 type Props = {
     params: {
@@ -61,7 +59,7 @@ function Description({ html, specifications }: DescriptionProp) {
 }
 
 async function getProduct(sku: string) {
-    const query = await fetch(`http://127.0.0.1:8000/product/${sku}/`, {
+    const query = await fetch(`https://api.cyberflake.in/product/${sku}/`, {
         cache: "no-store",
     });
     const response = await query.json();
@@ -120,69 +118,18 @@ async function ProductPage({ params: { sku } }: Props) {
                             </div>
                         </div>
                     </div>
-                    <div className="space-y-6">
-                        <div className="flex gap-x-2">
-                            <span className="text-2xl font-bold lg:text-4xl">
-                                ₹
-                                {Intl.NumberFormat("en-IN", {
-                                    maximumSignificantDigits: 3,
-                                }).format(product.regular_price)}
-                            </span>
-                            <span className="text-md text-slate-400 line-through">
-                                ₹
-                                {Intl.NumberFormat("en-IN", {
-                                    maximumSignificantDigits: 3,
-                                }).format(product.MRP)}
-                            </span>
-                        </div>
-                        <div className="space-y-3">
-                            <div className="flex gap-x-6">
-                                <div>
-                                    <DigitInput />
-                                </div>
-                                <p className="text-md font-semibold text-slate-500">
-                                    Only{" "}
-                                    <span className="text-md text-primary">
-                                        {product.Inventory} items
-                                    </span>{" "}
-                                    left!
-                                    <br />
-                                    Don't miss it
-                                </p>
-                            </div>
-                            <div className="w-fit">
-                                <a
-                                    className="flex items-center gap-x-1 underline-offset-1 hover:underline"
-                                    href="#"
-                                >
-                                    Bulk Order{" "}
-                                    <Icons.link className="h-4 w-4" />
-                                </a>
-                            </div>
-                        </div>
-                    </div>
                     <div className="flex gap-x-2">
-                        <div className="grid flex-grow grid-cols-2 gap-2">
-                            <Button
-                                variant={"outline"}
-                                className="h-full w-full rounded-lg shadow-sm"
-                            >
-                                <Icons.bag className="mr-2 h-6 w-6" /> Add To
-                                Cart
-                            </Button>
-                            <Button className="h-full w-full rounded-lg shadow-sm">
-                                <Icons.bag className="mr-2 h-6 w-6" />
-                                Buy Now
-                            </Button>
-                        </div>
-                        <Button
-                            variant={"outline"}
-                            size={"icon"}
-                            className="h-auto w-auto flex-shrink p-3 shadow-sm"
-                        >
-                            <Icons.heart className="h-6 w-6" />
-                        </Button>
+                        <span className="text-2xl font-bold lg:text-4xl">
+                            ₹
+                            {Intl.NumberFormat("en-IN").format(
+                                product.regular_price,
+                            )}
+                        </span>
+                        <span className="text-md text-slate-400 line-through">
+                            ₹{Intl.NumberFormat("en-IN").format(product.MRP)}
+                        </span>
                     </div>
+                    <AddToCart id={product.id} inventory={product.Inventory} />
                     <div className="flex flex-col gap-5">
                         <Accordion type="single" collapsible className="w-full">
                             <AccordionItem value="item-1">

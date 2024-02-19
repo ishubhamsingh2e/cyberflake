@@ -1,9 +1,13 @@
+"use client";
+
 import React from "react";
 import { Button } from "./ui/button";
 import { Icons } from "./icons";
 import { cn } from "@/lib/utils";
+import { apiClient } from "@/lib/api";
 
 interface CardProps {
+    id: number;
     title: string;
     brand: string;
     price: number;
@@ -14,6 +18,7 @@ interface CardProps {
 }
 
 function Card({
+    id,
     title,
     brand,
     price,
@@ -22,6 +27,14 @@ function Card({
     link,
     className,
 }: CardProps) {
+    async function addToCart(id: number, quantity: number) {
+        try {
+            const res = await apiClient.addToCart(id, quantity);
+        } catch (error) {
+            console.error("Error deleting item:", error);
+        }
+    }
+
     return (
         <div
             className={cn(
@@ -75,7 +88,12 @@ function Card({
                     >
                         <Icons.heart className="h-5 w-5" />
                     </Button>
-                    <Button className="flex-grow text-xs shadow-sm lg:text-base">
+                    <Button
+                        className="flex-grow text-xs shadow-sm lg:text-base"
+                        onClick={() => {
+                            addToCart(id, 1);
+                        }}
+                    >
                         Add to Cart
                     </Button>
                 </div>
