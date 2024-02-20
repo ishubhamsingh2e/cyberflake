@@ -1,28 +1,16 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import { AutoScroll } from "@splidejs/splide-extension-auto-scroll";
 
 import Card from "../../components/product-card";
+import { Product } from "@/types/types";
 
-const getProducts = async () => {
-    const res = await fetch("https://fakestoreapi.com/products");
-    const products = await res.json();
-    return products.slice(1, 9);
-};
+interface BestSellerProps {
+    bestSellers: Product[];
+}
 
-function BestSeller() {
-    const [products, setProducts] = useState([]);
-
-    useEffect(() => {
-        const fetchData = async () => {
-            const productsData = await getProducts();
-            setProducts(productsData);
-        };
-
-        fetchData();
-    }, []);
+function BestSeller({ bestSellers }: BestSellerProps) {
     return (
         <>
             <div className="lg:hidden">
@@ -46,17 +34,17 @@ function BestSeller() {
                     }}
                     extensions={{ AutoScroll }}
                 >
-                    {products.map((product, key) => (
+                    {bestSellers.map((product, key) => (
                         <SplideSlide key={key} aria-label="Trending">
                             <Card
                                 key={product.id}
                                 id={product.id}
                                 brand="RAZOR"
-                                title={product.title}
-                                price={product.price}
-                                discount={product.price}
-                                image={"https://placehold.co/400x400"}
-                                link="#"
+                                title={product.name}
+                                price={product.regular_price}
+                                discount={product.MRP}
+                                image={`https://api.cyberflake.in${product.thumbnail}`}
+                                link={`/product/${product.SKU}/`}
                             />
                         </SplideSlide>
                     ))}
@@ -84,17 +72,17 @@ function BestSeller() {
                     }}
                     extensions={{ AutoScroll }}
                 >
-                    {products.map((product, key) => (
+                    {bestSellers.map((product, key) => (
                         <SplideSlide key={key} aria-label="Trending">
                             <Card
                                 key={product.id}
                                 id={product.id}
                                 brand="RAZOR"
-                                title={product.title}
-                                price={product.price}
-                                discount={product.price}
-                                image={"https://placehold.co/400x400"}
-                                link="#"
+                                title={product.name}
+                                price={product.regular_price}
+                                discount={product.MRP}
+                                image={`https://api.cyberflake.in${product.thumbnail}`}
+                                link={`/product/${product.SKU}/`}
                             />
                         </SplideSlide>
                     ))}

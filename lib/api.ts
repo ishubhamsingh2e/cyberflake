@@ -24,6 +24,32 @@ class ApiClient {
         reject(error);
     }
 
+    async getHome(): Promise<any> {
+        return new Promise((resolve, reject) => {
+            const url = `${this.baseUrl}/home/`;
+            const xhr = new XMLHttpRequest();
+
+            xhr.open("GET", url, true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+
+            xhr.onreadystatechange = () => {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    try {
+                        resolve(this.handleResponse(xhr));
+                    } catch (error) {
+                        this.handleError(error, reject);
+                    }
+                }
+            };
+
+            xhr.onerror = () => {
+                this.handleError(new Error("Network error"), reject);
+            };
+
+            xhr.send();
+        });
+    }
+
     async requestOTP(phone: string): Promise<any> {
         return new Promise((resolve, reject) => {
             const url = `${this.baseUrl}/request-otp/`;
