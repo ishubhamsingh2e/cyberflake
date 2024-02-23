@@ -9,7 +9,6 @@ import {
     DropdownMenuItem,
     DropdownMenuLabel,
     DropdownMenuSeparator,
-    DropdownMenuShortcut,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { apiClient } from "@/lib/api";
@@ -38,40 +37,42 @@ export function UserNav() {
         location.reload();
     }
 
+    function login() {
+        window.location.href = "/login";
+    }
+
     return (
         <DropdownMenu>
-            <DropdownMenuTrigger
-                asChild
-                disabled={!(name !== "" && phone !== "")}
-            >
+            <DropdownMenuTrigger asChild>
                 <Button
                     variant="ghost"
                     size={"icon"}
                     className="relative lg:h-10 lg:w-10"
                 >
                     <Avatar className="lg:h-10 lg:w-10 rounded-md">
-                        <AvatarImage
-                            src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                            alt="@shadcn"
-                        />
+                        <AvatarImage src="logo.jpg" alt="@cyberflake" />
                         <AvatarFallback className="rounded-md">
-                            SC
+                            CF
                         </AvatarFallback>
                     </Avatar>
                 </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-56" align="end" forceMount>
-                <DropdownMenuLabel className="font-normal">
-                    <div className="flex flex-col space-y-1">
-                        <p className="text-sm font-medium leading-none">
-                            {name}
-                        </p>
-                        <p className="text-xs leading-none text-muted-foreground">
-                            (+91) {phone}
-                        </p>
-                    </div>
-                </DropdownMenuLabel>
-                <DropdownMenuSeparator />
+                {name !== "" && phone !== "" ? (
+                    <>
+                        <DropdownMenuLabel className="font-normal">
+                            <div className="flex flex-col space-y-1">
+                                <p className="text-sm font-medium leading-none">
+                                    {name}
+                                </p>
+                                <p className="text-xs leading-none text-muted-foreground">
+                                    (+91) {phone}
+                                </p>
+                            </div>
+                        </DropdownMenuLabel>
+                        <DropdownMenuSeparator />
+                    </>
+                ) : null}
                 <DropdownMenuGroup>
                     <DropdownMenuItem disabled>
                         <Icons.heart className="mr-1 h-4 w-4 text-pink-500 fill-pink-500" />
@@ -83,7 +84,21 @@ export function UserNav() {
                     </DropdownMenuItem>
                 </DropdownMenuGroup>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem onClick={logout}>Log out</DropdownMenuItem>
+                {name !== "" && phone !== "" ? (
+                    <DropdownMenuItem
+                        className="cursor-pointer"
+                        onClick={logout}
+                    >
+                        Log out
+                    </DropdownMenuItem>
+                ) : (
+                    <DropdownMenuItem
+                        className="cursor-pointer"
+                        onClick={login}
+                    >
+                        Log in
+                    </DropdownMenuItem>
+                )}
             </DropdownMenuContent>
         </DropdownMenu>
     );
