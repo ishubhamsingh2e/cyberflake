@@ -10,6 +10,8 @@ import { Label } from "@/components/ui/label";
 import { apiClient } from "@/lib/api";
 import { setCookie } from "@/lib/cookie";
 
+import { useToast } from "@/components/ui/use-toast";
+
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
@@ -23,6 +25,8 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
     const [timeRemaining, setTimeRemaining] = React.useState<number>(300);
     const [resendCooldown, setResendCooldown] = React.useState<boolean>(false);
     const [newUser, setNewUser] = React.useState<boolean>(true);
+
+    const { toast } = useToast();
 
     React.useEffect(() => {
         let timerId: NodeJS.Timeout;
@@ -45,6 +49,10 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
                     setNewUser(res.response.new_user);
                     setIsOTPSent(true);
                     setResendCooldown(true);
+                    toast({
+                        title: "OTP",
+                        description: res.response.message,
+                    });
                     setTimeout(() => {
                         setResendCooldown(false);
                     }, 180000);
@@ -64,12 +72,10 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
             setIsLoading(false);
             return;
         }
-        console.log(isOTPSent, isVerified);
         if (isOTPSent && !isVerified) {
             await apiClient.verifyOTP(phone, OTP).then((res) => {
                 if (res.success) {
                     setCookie("JWT", res.token, 7);
-                    console.log(res);
                     if (!newUser) {
                         window.location.href = "/";
                     } else {
