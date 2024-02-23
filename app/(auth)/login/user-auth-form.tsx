@@ -64,12 +64,13 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
             setIsLoading(false);
             return;
         }
+        console.log(isOTPSent, isVerified);
         if (isOTPSent && !isVerified) {
             await apiClient.verifyOTP(phone, OTP).then((res) => {
                 if (res.success) {
                     setCookie("JWT", res.token, 7);
-                    if (newUser) {
-                        alert(newUser ? "New user!" : "Existing user!");
+                    console.log(res);
+                    if (!newUser) {
                         window.location.href = "/";
                     } else {
                         setIsVerified(true);
@@ -121,7 +122,6 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
                     </Label>
                     <Input
                         id="name"
-                        autoFocus
                         placeholder="Last Name"
                         type="text"
                         autoCapitalize="none"
