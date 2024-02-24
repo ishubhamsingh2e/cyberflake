@@ -313,6 +313,158 @@ class ApiClient {
             xhr.send(payload.toString());
         });
     }
-}
 
+    async getUserAddress(): Promise<any> {
+        return new Promise((resolve, reject) => {
+            const url = `${this.baseUrl}/user-address/`;
+            const xhr = new XMLHttpRequest();
+
+            xhr.open("GET", url, true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            const JWT = getCookie("JWT");
+
+            if (!JWT) {
+                return {
+                    status: 401,
+                }
+            }
+
+            xhr.setRequestHeader("JWT", JWT);
+
+            xhr.onreadystatechange = () => {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    try {
+                        resolve(this.handleResponse(xhr));
+                    } catch (error) {
+                        this.handleError(error, reject);
+                    }
+                }
+            };
+
+            xhr.onerror = () => {
+                this.handleError(new Error("Network error"), reject);
+            };
+
+            xhr.send();
+        });
+    }
+
+    async patchUserBillingAddress(
+        company_name: string,
+        first_name: string,
+        last_name: string,
+        phone: string,
+        address_l1: string,
+        address_l2: string,
+        pincode: string,
+        city: string,
+        state: string,
+        GST: string,
+    ): Promise<any> {
+        return new Promise((resolve, reject) => {
+            const url = `${this.baseUrl}/user-address/`;
+            const xhr = new XMLHttpRequest();
+
+            xhr.open("PATCH", url, true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            const JWT = getCookie("JWT");
+
+            if (!JWT) {
+                return {
+                    status: 401,
+                }
+            }
+
+            xhr.setRequestHeader("JWT", JWT);
+
+            xhr.onreadystatechange = () => {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    try {
+                        resolve(this.handleResponse(xhr));
+                    } catch (error) {
+                        this.handleError(error, reject);
+                    }
+                }
+            };
+
+            xhr.onerror = () => {
+                this.handleError(new Error("Network error"), reject);
+            };
+
+            const data = JSON.stringify({
+                "billing_address": {
+                    "company_name": company_name,
+                    "first_name": first_name,
+                    "last_name": last_name,
+                    "phone": phone,
+                    "address_l1": address_l1,
+                    "address_l2": address_l2,
+                    "pincode": pincode,
+                    "city": city,
+                    "state": state,
+                    "GST": GST,
+                }
+            })
+            xhr.send(data);
+        });
+    }
+
+    async PatchUserShippingAddress(
+        first_name: string,
+        last_name: string,
+        phone: string,
+        address_l1: string,
+        address_l2: string,
+        pincode: string,
+        city: string,
+        state: string,
+    ): Promise<any> {
+        return new Promise((resolve, reject) => {
+            const url = `${this.baseUrl}/user-address/`;
+            const xhr = new XMLHttpRequest();
+
+            xhr.open("PATCH", url, true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            const JWT = getCookie("JWT");
+
+            if (!JWT) {
+                return {
+                    status: 401,
+                }
+            }
+
+            xhr.setRequestHeader("JWT", JWT);
+
+            xhr.onreadystatechange = () => {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    try {
+                        resolve(this.handleResponse(xhr));
+                    } catch (error) {
+                        this.handleError(error, reject);
+                    }
+                }
+            };
+
+            xhr.onerror = () => {
+                this.handleError(new Error("Network error"), reject);
+            };
+
+            const data = JSON.stringify({
+                "shipping_address": {
+                    "first_name": first_name,
+                    "last_name": last_name,
+                    "phone": phone,
+                    "address_l1": address_l1,
+                    "address_l2": address_l2,
+                    "pincode": pincode,
+                    "city": city,
+                    "state": state,
+                }
+            })
+
+            xhr.send(data)
+        })
+    }
+}
 export const apiClient = new ApiClient("https://api.cyberflake.in");
+// export const apiClient = new ApiClient("http://127.0.0.1:8000");
