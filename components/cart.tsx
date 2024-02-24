@@ -82,7 +82,14 @@ export function Cart() {
                 <div className="text-slate-400 text-xs md:text-sm">
                     Tax included and shipping calculated at checkout
                 </div>
-                <Button className="w-full h-12">Check Out</Button>
+                <Button
+                    onClick={() => {
+                        window.location.href = "/checkout";
+                    }}
+                    className="w-full h-12"
+                >
+                    Check Out
+                </Button>
             </div>
         </div>
     );
