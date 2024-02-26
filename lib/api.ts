@@ -468,7 +468,7 @@ class ApiClient {
 
     async checkout(billing_and_shipping_address_are_same: boolean, method: string = 'razor-pay'): Promise<any> {
         return new Promise((resolve, reject) => {
-            const url = `http://127.0.0.1:8000/check-out/`;
+            const url = `${this.baseUrl}/check-out/`;
             const xhr = new XMLHttpRequest();
 
             xhr.open("POST", url, true);
@@ -509,7 +509,7 @@ class ApiClient {
 
     async VerifyRazorPay(payment_id: string, order_id: string, signature: string): Promise<any> {
         return new Promise((resolve, reject) => {
-            const url = `http://127.0.0.1:8000/razor-pay/verify/`;
+            const url = `${this.baseUrl}/razor-pay/verify/`;
             const xhr = new XMLHttpRequest();
 
             xhr.open("POST", url, true);
