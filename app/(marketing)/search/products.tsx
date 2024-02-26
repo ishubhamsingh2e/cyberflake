@@ -20,6 +20,7 @@ function Products() {
             try {
                 const res = await fetch(
                     `https://api.cyberflake.in/search/?query=${search.get("q")}`,
+                    { cache: "no-store" },
                 );
                 const data = await res.json();
                 setProductsData(data.products);

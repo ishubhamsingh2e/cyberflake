@@ -3,7 +3,9 @@ import Card from "@/components/product-card";
 import BestSeller from "@/app/(marketing)/best-seller";
 
 async function getProducts() {
-    const res = await fetch("https://api.cyberflake.in/home");
+    const res = await fetch("https://api.cyberflake.in/home", {
+        cache: "no-store",
+    });
     const data = await res.json();
     return data;
 }
