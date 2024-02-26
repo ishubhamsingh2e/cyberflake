@@ -465,6 +465,88 @@ class ApiClient {
             xhr.send(data)
         })
     }
+
+    async checkout(billing_and_shipping_address_are_same: boolean, method: string = 'razor-pay'): Promise<any> {
+        return new Promise((resolve, reject) => {
+            const url = `http://127.0.0.1:8000/check-out/`;
+            const xhr = new XMLHttpRequest();
+
+            xhr.open("POST", url, true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            const JWT = getCookie("JWT");
+
+            if (!JWT) {
+                return {
+                    status: 401,
+                }
+            }
+
+            xhr.setRequestHeader("JWT", JWT);
+
+            xhr.onreadystatechange = () => {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    try {
+                        resolve(this.handleResponse(xhr));
+                    } catch (error) {
+                        this.handleError(error, reject);
+                    }
+                }
+            };
+
+            xhr.onerror = () => {
+                this.handleError(new Error("Network error"), reject);
+            };
+
+            const data = JSON.stringify({
+                "billing_and_shipping_address_are_same": billing_and_shipping_address_are_same,
+                "method": method,
+            })
+
+            xhr.send(data)
+
+        })
+    }
+
+    async VerifyRazorPay(payment_id: string, order_id: string, signature: string): Promise<any> {
+        return new Promise((resolve, reject) => {
+            const url = `http://127.0.0.1:8000/razor-pay/verify/`;
+            const xhr = new XMLHttpRequest();
+
+            xhr.open("POST", url, true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            const JWT = getCookie("JWT");
+
+            if (!JWT) {
+                return {
+                    status: 401,
+                }
+            }
+
+            xhr.setRequestHeader("JWT", JWT);
+
+            xhr.onreadystatechange = () => {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    try {
+                        resolve(this.handleResponse(xhr));
+                    } catch (error) {
+                        this.handleError(error, reject);
+                    }
+                }
+            };
+
+            xhr.onerror = () => {
+                this.handleError(new Error("Network error"), reject);
+            };
+
+            const data = JSON.stringify({
+                "razorpay_payment_id": payment_id,
+                "razorpay_order_id": order_id,
+                "razorpay_signature": signature,
+            })
+
+            xhr.send(data)
+        })
+    }
 }
 export const apiClient = new ApiClient("https://api.cyberflake.in");
 // export const apiClient = new ApiClient("http://127.0.0.1:8000");

@@ -21,7 +21,7 @@ import {
     SelectTrigger,
     SelectValue,
 } from "./ui/select";
-import { useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { Checkbox } from "./ui/checkbox";
 import { Separator } from "./ui/separator";
 import { apiClient } from "@/lib/api";
@@ -78,13 +78,17 @@ const formSchemaShipping = z.object({
     }),
 });
 
-export function AddressForm() {
-    const [billingAndShipingAddressIsSame, setBillingAndShipingAddressIsSame] =
-        useState(true);
+interface AddressFormProps {
+    billingAndShipingAddressIsSame: boolean;
+    setBillingAndShipingAddressIsSame: Dispatch<SetStateAction<boolean>>;
+}
+
+export function AddressForm({
+    billingAndShipingAddressIsSame,
+    setBillingAndShipingAddressIsSame,
+}: AddressFormProps) {
     const [isloading, setIsLoading] = useState(true);
-
     const { toast } = useToast();
-
     const formBilling = useForm<z.infer<typeof formSchemaBilling>>({
         resolver: zodResolver(formSchemaBilling),
         defaultValues: {

@@ -40,6 +40,7 @@ import {
     Trash2,
     LucideIcon,
     MessageCircle,
+    Lock,
 } from "lucide-react";
 
 export type Icon = LucideIcon;
@@ -439,4 +440,5 @@ export const Icons = {
         </svg>
     ),
     support: MessageCircle,
+    lock: Lock,
 };
