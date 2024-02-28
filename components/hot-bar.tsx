@@ -1,13 +1,28 @@
-import React from "react";
-import { Button } from "./ui/button";
-import hotbar from "@/config/hotbar";
 import { cn } from "@/lib/utils";
+import { buttonVariants } from "@/components/ui/button";
+import Link from "next/link";
 
 interface Props {
     className?: string;
 }
 
-function HotBar({ className }: Props) {
+interface Response {
+    id: number;
+    name: string;
+    url: string;
+}
+
+async function getItems() {
+    const res = await fetch("https://api.cyberflake.in/hotbar", {
+        cache: "no-store",
+    });
+    const data: Response[] = await res.json();
+    return data;
+}
+
+async function HotBar({ className }: Props) {
+    const hotbar = await getItems();
+
     return (
         <ul
             className={cn(
@@ -17,7 +32,12 @@ function HotBar({ className }: Props) {
         >
             {hotbar.map((item, index) => (
                 <li key={index} className="inline-block">
-                    <Button variant={"ghost"}>{item.title}</Button>
+                    <a
+                        className={buttonVariants({ variant: "ghost" })}
+                        href={item.url}
+                    >
+                        {item.name}
+                    </a>
                 </li>
             ))}
         </ul>

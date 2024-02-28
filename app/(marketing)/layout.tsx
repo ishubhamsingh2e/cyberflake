@@ -24,7 +24,7 @@ export default async function MarketingLayout({
                         </header>
                     </div>
                     <div className="overflow-x-hidden pb-2 pt-0 text-sm font-light text-slate-50 lg:bg-[#533267] lg:pt-2">
-                        <HotBar className="hidden w-full lg:flex lg:w-auto" />
+                        <HotBar className="hidden w-full lg:flex lg:w-auto justify-center" />
                         <search className="m-1 flex gap-x-1 lg:hidden">
                             <Search className="h-10 w-full flex-grow text-slate-900 shadow-sm lg:hidden" />
                             <Button
