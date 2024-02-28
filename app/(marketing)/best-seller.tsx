@@ -39,7 +39,7 @@ function BestSeller({ bestSellers }: BestSellerProps) {
                             <Card
                                 key={product.id}
                                 id={product.id}
-                                brand="RAZOR"
+                                brand={product.brand.name}
                                 title={product.name}
                                 price={product.regular_price}
                                 discount={product.MRP}
@@ -77,7 +77,7 @@ function BestSeller({ bestSellers }: BestSellerProps) {
                             <Card
                                 key={product.id}
                                 id={product.id}
-                                brand="RAZOR"
+                                brand={product.brand.name}
                                 title={product.name}
                                 price={product.regular_price}
                                 discount={product.MRP}
