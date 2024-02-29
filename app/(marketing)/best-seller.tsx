@@ -45,6 +45,7 @@ function BestSeller({ bestSellers }: BestSellerProps) {
                                 discount={product.MRP}
                                 image={`https://api.cyberflake.in${product.thumbnail}`}
                                 link={`/product/${product.SKU}/`}
+                                wishlist={true}
                             />
                         </SplideSlide>
                     ))}
@@ -83,6 +84,7 @@ function BestSeller({ bestSellers }: BestSellerProps) {
                                 discount={product.MRP}
                                 image={`https://api.cyberflake.in${product.thumbnail}`}
                                 link={`/product/${product.SKU}/`}
+                                wishlist={true}
                             />
                         </SplideSlide>
                     ))}
