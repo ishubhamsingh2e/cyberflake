@@ -116,6 +116,7 @@ function Products() {
                                 discount={product.MRP}
                                 image={`https://api.cyberflake.in${product.thumbnail}`}
                                 link={`product/${product.SKU}/`}
+                                wishlist={true}
                             />
                         ))}
                     </div>
