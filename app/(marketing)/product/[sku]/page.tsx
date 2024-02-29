@@ -17,7 +17,7 @@ import type { Metadata } from "next";
 import { SpecsTable } from "./components/specs";
 
 import { redirect } from "next/navigation";
-import AddToCart from "./client-side/add-to-cart";
+import AddToCart from "./components/add-to-cart";
 
 type Props = {
     params: {

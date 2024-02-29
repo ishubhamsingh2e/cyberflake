@@ -7,7 +7,6 @@ import {
     SheetContent,
     SheetDescription,
     SheetHeader,
-    SheetTitle,
     SheetTrigger,
 } from "@/components/ui/sheet";
 
@@ -15,7 +14,7 @@ import Navigation from "./navigation";
 import { Button } from "../ui/button";
 import Link from "next/link";
 import Search from "../search";
-import { Cart } from "../cart";
+import CartButton from "./cart-button";
 
 function NavigationBar({ className }: { className?: string }) {
     return (
@@ -30,25 +29,7 @@ function NavigationBar({ className }: { className?: string }) {
                 <div className="flex items-center lg:space-x-2">
                     <div className="hidden space-x-2 lg:flex">
                         <Search className="h-10 w-full lg:w-auto" />
-                        <Sheet>
-                            <SheetTrigger asChild>
-                                <Button
-                                    variant={"outline"}
-                                    size={"icon"}
-                                    className="h-10 w-10 shadow-sm"
-                                >
-                                    <Icons.bag className="h-6 w-6" />
-                                </Button>
-                            </SheetTrigger>
-                            <SheetContent className="flex flex-col w-full px-1">
-                                <SheetHeader>
-                                    <SheetTitle>Your Cart</SheetTitle>
-                                </SheetHeader>
-                                <SheetDescription asChild>
-                                    <Cart />
-                                </SheetDescription>
-                            </SheetContent>
-                        </Sheet>
+                        <CartButton />
                     </div>
                     <div className="flex items-center gap-x-2">
                         <UserNav />

@@ -27,7 +27,7 @@ export function UserNav() {
                 SetPhone(res.user.phone);
                 setCookie("JWT", res.user.token, 7);
             } else {
-                alert("can't get user!");
+                window.location.href = "/login";
             }
         });
     });
@@ -74,11 +74,16 @@ export function UserNav() {
                     </>
                 ) : null}
                 <DropdownMenuGroup>
-                    <DropdownMenuItem disabled>
+                    <DropdownMenuItem
+                        className="cursor-pointer"
+                        onClick={() => {
+                            window.location.href = "/wishlist";
+                        }}
+                    >
                         <Icons.heart className="mr-1 h-4 w-4 text-pink-500 fill-pink-500" />
                         Wishlist
                     </DropdownMenuItem>
-                    <DropdownMenuItem disabled>
+                    <DropdownMenuItem className="cursor-pointer" disabled>
                         <Icons.support className="mr-1 h-4 w-4 text-yellow-500 fill-yellow-500" />
                         Support!
                     </DropdownMenuItem>

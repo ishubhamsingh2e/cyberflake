@@ -64,6 +64,7 @@ async function Home() {
                                 discount={product.MRP}
                                 image={`https://api.cyberflake.in${product.thumbnail}`}
                                 link={`/product/${product.SKU}/`}
+                                wishlist={true}
                             />
                         ))}
                     </div>
@@ -90,6 +91,7 @@ async function Home() {
                                 discount={product.MRP}
                                 image={`https://api.cyberflake.in${product.thumbnail}`}
                                 link={`/product/${product.SKU}/`}
+                                wishlist={true}
                             />
                         ))}
                     </div>

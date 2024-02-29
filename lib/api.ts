@@ -15,7 +15,7 @@ class ApiClient {
             }
             return response.responseText;
         } else {
-            throw new Error(`Request failed with status: ${response.status}`);
+            console.log(`Request failed with status: ${response.status}`);
         }
     }
 
@@ -545,6 +545,74 @@ class ApiClient {
             })
 
             xhr.send(data)
+        })
+    }
+    async getWishlist(): Promise<any> {
+        return new Promise((resolve, reject) => {
+            const url = `${this.baseUrl}/wishlist/`;
+            const xhr = new XMLHttpRequest();
+
+            xhr.open("GET", url, true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            const JWT = getCookie("JWT");
+
+            if (!JWT) {
+                return {
+                    status: 401,
+                }
+            }
+
+            xhr.setRequestHeader("JWT", JWT);
+
+            xhr.onreadystatechange = () => {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    try {
+                        resolve(this.handleResponse(xhr));
+                    } catch (error) {
+                        this.handleError(error, reject);
+                    }
+                }
+            };
+
+            xhr.onerror = () => {
+                this.handleError(new Error("Network error"), reject);
+            };
+
+            xhr.send();
+        });
+    }
+    async addToWishlist(product_id: number): Promise<any> {
+        return new Promise((resolve, reject) => {
+            const url = `${this.baseUrl}/wishlist/`;
+            const xhr = new XMLHttpRequest();
+
+            xhr.open("POST", url, true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            const JWT = getCookie("JWT");
+
+            if (!JWT) {
+                return {
+                    status: 401,
+                }
+            }
+
+            xhr.setRequestHeader("JWT", JWT);
+
+            xhr.onreadystatechange = () => {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    try {
+                        resolve(this.handleResponse(xhr));
+                    } catch (error) {
+                        this.handleError(error, reject);
+                    }
+                }
+            };
+
+            xhr.onerror = () => {
+                this.handleError(new Error("Network error"), reject);
+            };
+
+            xhr.send(`product_id=${product_id}`)
         })
     }
 }

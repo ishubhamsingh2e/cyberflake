@@ -24,7 +24,7 @@ export function SpecsTable({ specs }: SpecsTableProps) {
                 {specs.map((spec, index) => (
                     <TableRow key={index}>
                         <TableCell>{spec.attribute}</TableCell>
-                        <TableCell>{spec.value}</TableCell>
+                        <TableCell><p>{spec.value}</p></TableCell>
                     </TableRow>
                 ))}
             </TableBody>

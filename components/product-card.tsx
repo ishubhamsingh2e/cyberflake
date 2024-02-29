@@ -6,6 +6,8 @@ import { Icons } from "./icons";
 import { cn } from "@/lib/utils";
 import { apiClient } from "@/lib/api";
 
+import { useToast } from "@/components/ui/use-toast";
+
 interface CardProps {
     id: number;
     title: string;
@@ -15,6 +17,7 @@ interface CardProps {
     image: string;
     link: string;
     className?: string;
+    wishlist: boolean;
 }
 
 function Card({
@@ -26,14 +29,9 @@ function Card({
     image,
     link,
     className,
+    wishlist = true,
 }: CardProps) {
-    async function addToCart(id: number, quantity: number) {
-        try {
-            const res = await apiClient.addToCart(id, quantity);
-        } catch (error) {
-            console.error("Error deleting item:", error);
-        }
-    }
+    const { toast } = useToast();
 
     return (
         <div
@@ -80,18 +78,50 @@ function Card({
                     </p>
                 </div>
                 <div className="flex justify-end gap-x-1">
-                    <Button
-                        disabled
-                        variant={"outline"}
-                        size={"icon"}
-                        className="flex-shrink shadow-sm"
-                    >
-                        <Icons.heart className="h-5 w-5" />
-                    </Button>
+                    {wishlist ? (
+                        <Button
+                            variant={"outline"}
+                            size={"icon"}
+                            className="flex-shrink shadow-sm"
+                            onClick={() => {
+                                apiClient.addToWishlist(id).then((res) => {
+                                    if (res.message) {
+                                        toast({
+                                            title: "Wishlist",
+                                            description: res.message,
+                                        });
+                                    } else {
+                                        toast({
+                                            title: "Wishlist",
+                                            variant: "destructive",
+                                            description:
+                                                "product can't be added doue to some error",
+                                        });
+                                    }
+                                });
+                            }}
+                        >
+                            <Icons.heart className="h-5 w-5" />
+                        </Button>
+                    ) : null}
                     <Button
                         className="flex-grow text-xs shadow-sm lg:text-base"
                         onClick={() => {
-                            addToCart(id, 1);
+                            apiClient.addToCart(id, 1).then((res) => {
+                                if (res.message) {
+                                    toast({
+                                        title: "Cart",
+                                        description: res.message,
+                                    });
+                                } else {
+                                    toast({
+                                        title: "Cart",
+                                        variant: "destructive",
+                                        description:
+                                            "product can't be added due to some error",
+                                    });
+                                }
+                            });
                         }}
                     >
                         Add to Cart
