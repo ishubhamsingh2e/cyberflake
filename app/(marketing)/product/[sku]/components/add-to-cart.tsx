@@ -6,6 +6,8 @@ import { DigitInput } from "@/components/ui/digit-input";
 import { apiClient } from "@/lib/api";
 import React, { useState } from "react";
 
+import { useToast } from "@/components/ui/use-toast";
+
 interface AddToCartProps {
     id: number;
     inventory: number;
@@ -13,6 +15,8 @@ interface AddToCartProps {
 
 function AddToCart({ id, inventory }: AddToCartProps) {
     const [digitValue, setDigitValue] = useState<number>(1);
+
+    const { toast } = useToast();
 
     async function addToCart(id: number, quantity: number) {
         try {
@@ -63,7 +67,20 @@ function AddToCart({ id, inventory }: AddToCartProps) {
                         variant={"outline"}
                         className="h-full w-full rounded-lg shadow-sm"
                         onClick={() => {
-                            addToCart(id, digitValue);
+                            addToCart(id, digitValue).then((res: any) => {
+                                if (!res.error) {
+                                    toast({
+                                        title: "Cart",
+                                        description: "product added to cart",
+                                    });
+                                } else {
+                                    toast({
+                                        title: "Cart",
+                                        variant: "destructive",
+                                        description: res.error,
+                                    });
+                                }
+                            });
                         }}
                     >
                         <Icons.bag className="mr-2 h-6 w-6" /> Add To Cart

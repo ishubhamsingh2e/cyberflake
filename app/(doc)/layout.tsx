@@ -7,6 +7,8 @@ import NavigationMobile from "@/components/navigation/navigation-bar-mobile";
 import Search from "@/components/search";
 import { Button } from "@/components/ui/button";
 
+import "@/styles/markdown.css";
+
 interface MarketingLayoutProps {
     children: React.ReactNode;
 }

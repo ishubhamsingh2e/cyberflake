@@ -615,6 +615,41 @@ class ApiClient {
             xhr.send(`product_id=${product_id}`)
         })
     }
+
+    async getOrders(): Promise<any> {
+        return new Promise((resolve, reject) => {
+            const url = `${this.baseUrl}/orders/`;
+            const xhr = new XMLHttpRequest();
+
+            xhr.open("GET", url, true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            const JWT = getCookie("JWT");
+
+            if (!JWT) {
+                return {
+                    status: 401,
+                }
+            }
+
+            xhr.setRequestHeader("JWT", JWT);
+
+            xhr.onreadystatechange = () => {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    try {
+                        resolve(this.handleResponse(xhr));
+                    } catch (error) {
+                        this.handleError(error, reject);
+                    }
+                }
+            };
+
+            xhr.onerror = () => {
+                this.handleError(new Error("Network error"), reject);
+            };
+
+            xhr.send();
+        });
+    }
 }
 export const apiClient = new ApiClient("https://api.cyberflake.in");
 // export const apiClient = new ApiClient("http://127.0.0.1:8000");

@@ -1,0 +1,141 @@
+/* Reset some default styles to ensure consistency */
+.markdown body,
+.markdown h1,
+.markdown h2,
+.markdown h3,
+.markdown h4,
+.markdown h5,
+.markdown h6,
+.markdown p,
+.markdown ul,
+.markdown ol,
+.markdown li {
+  margin: 0;
+  padding: 0;
+}
+
+.markdown body {
+  font-family: 'Arial', sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background-color: #f8f8f8;
+  margin: 20px;
+  font-size: 16px;
+  /* Default font size */
+}
+
+.markdown .container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.markdown h1 {
+  font-size: 2em;
+  /* Adjust the size as needed */
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.markdown h2 {
+  font-size: 1.5em;
+  /* Adjust the size as needed */
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.markdown h3 {
+  font-size: 1.2em;
+  /* Adjust the size as needed */
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.markdown h4 {
+  font-size: 1.1em;
+  /* Adjust the size as needed */
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.markdown h5 {
+  font-size: 1em;
+  /* Adjust the size as needed */
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.markdown h6 {
+  font-size: 0.9em;
+  /* Adjust the size as needed */
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.markdown p {
+  font-size: 1em;
+  /* Adjust the size as needed */
+  margin-bottom: 15px;
+}
+
+.markdown a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.markdown a:hover {
+  text-decoration: underline;
+}
+
+.markdown ul,
+.markdown ol {
+  margin-bottom: 15px;
+}
+
+.markdown ol {
+  padding: 20px;
+  list-style-type: decimal;
+}
+
+.markdown ol li {
+  margin: 0 10px;
+  padding: 0 10px;
+}
+
+/* Style code blocks */
+.markdown pre {
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  padding: 10px;
+  overflow: auto;
+}
+
+.markdown code {
+  font-family: 'Courier New', Courier, monospace;
+  color: #333;
+}
+
+/* Style tables */
+.markdown table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 15px;
+}
+
+.markdown th,
+.markdown td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.markdown th {
+  background-color: #f2f2f2;
+}
+
+/* Responsive Images */
+.markdown img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Add your custom styles below this line */
