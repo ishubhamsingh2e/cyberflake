@@ -83,6 +83,15 @@ export function UserNav() {
                         <Icons.heart className="mr-1 h-4 w-4 text-pink-500 fill-pink-500" />
                         Wishlist
                     </DropdownMenuItem>
+                    <DropdownMenuItem
+                        className="cursor-pointer"
+                        onClick={() => {
+                            window.location.href = "/orders";
+                        }}
+                    >
+                        <Icons.order className="mr-1 h-4 w-4 text-primary fill-primary" />
+                        Orders
+                    </DropdownMenuItem>
                     <DropdownMenuItem className="cursor-pointer" disabled>
                         <Icons.support className="mr-1 h-4 w-4 text-yellow-500 fill-yellow-500" />
                         Support!

@@ -41,6 +41,7 @@ import {
     LucideIcon,
     MessageCircle,
     Lock,
+    ShoppingBasket,
 } from "lucide-react";
 
 export type Icon = LucideIcon;
@@ -441,4 +442,5 @@ export const Icons = {
     ),
     support: MessageCircle,
     lock: Lock,
+    order: ShoppingBasket,
 };
