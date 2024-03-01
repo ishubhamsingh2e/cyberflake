@@ -64,16 +64,10 @@ function Card({
                 <div className="mb-5 mt-2 flex items-center justify-between">
                     <p>
                         <span className="text-xl font-bold lg:text-3xl">
-                            ₹
-                            {Intl.NumberFormat("en-IN", {
-                                maximumSignificantDigits: 3,
-                            }).format(price)}
+                            ₹{Intl.NumberFormat("en-IN").format(price)}
                         </span>
                         <span className="ml-1 text-sm line-through">
-                            ₹
-                            {Intl.NumberFormat("en-IN", {
-                                maximumSignificantDigits: 3,
-                            }).format(discount)}
+                            ₹{Intl.NumberFormat("en-IN").format(discount)}
                         </span>
                     </p>
                 </div>
