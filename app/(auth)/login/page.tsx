@@ -45,14 +45,14 @@ export default function AuthenticationPage() {
                         <p className="px-8 text-center text-sm text-muted-foreground">
                             By Signup, you agree to our{" "}
                             <Link
-                                href="/terms"
+                                href="/tnc"
                                 className="underline underline-offset-4 hover:text-primary"
                             >
-                                Terms of Service
+                                Terms and Conditions
                             </Link>{" "}
                             and{" "}
                             <Link
-                                href="/privacy"
+                                href="/privacy-policy"
                                 className="underline underline-offset-4 hover:text-primary"
                             >
                                 Privacy Policy
