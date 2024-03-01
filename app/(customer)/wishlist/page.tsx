@@ -31,6 +31,7 @@ function Wishlist() {
                     image={`https://api.cyberflake.in${item.product.thumbnail}`}
                     link={`/product/${item.product.SKU}/`}
                     wishlist={false}
+                    deleteWishlist={true}
                 />
             ))}
         </div>
