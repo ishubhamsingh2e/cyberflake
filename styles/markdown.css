@@ -91,6 +91,16 @@
   margin-bottom: 15px;
 }
 
+.markdown ul {
+  padding: 20px;
+  list-style-type: disc;
+}
+
+.markdown ul li {
+  margin: 0 10px;
+  padding: 0 10px;
+}
+
 .markdown ol {
   padding: 20px;
   list-style-type: decimal;
