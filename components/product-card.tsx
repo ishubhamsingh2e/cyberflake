@@ -17,7 +17,8 @@ interface CardProps {
     image: string;
     link: string;
     className?: string;
-    wishlist: boolean;
+    wishlist?: boolean;
+    deleteWishlist?: boolean;
 }
 
 function Card({
@@ -30,6 +31,7 @@ function Card({
     link,
     className,
     wishlist = true,
+    deleteWishlist = false,
 }: CardProps) {
     const { toast } = useToast();
 
@@ -120,6 +122,38 @@ function Card({
                     >
                         Add to Cart
                     </Button>
+                    {deleteWishlist ? (
+                        <Button
+                            variant={"outline"}
+                            size={"icon"}
+                            className="flex-shrink shadow-sm bg-destructive text-slate-100 border-none"
+                            onClick={() => {
+                                apiClient.deleteWishlist(id).then((res) => {
+                                    if (res.message) {
+                                        toast({
+                                            title: "Wishlist",
+                                            description: res.message,
+                                        });
+                                    } else if (res.error) {
+                                        toast({
+                                            title: "Wishlist",
+                                            variant: "destructive",
+                                            description: res.error,
+                                        });
+                                    } else {
+                                        toast({
+                                            title: "Wishlist",
+                                            variant: "destructive",
+                                            description:
+                                                "product can't be added doue to some error",
+                                        });
+                                    }
+                                });
+                            }}
+                        >
+                            <Icons.trash className="h-5 w-5" />
+                        </Button>
+                    ) : null}
                 </div>
             </div>
         </div>
