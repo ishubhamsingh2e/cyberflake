@@ -35,7 +35,7 @@ function CartButton() {
                         size={"icon"}
                         className="h-10 w-10 shadow-sm"
                     >
-                        <Icons.bag className="h-6 w-10" />
+                        <Icons.bag className="h-6 w-10 hover:border-none" />
                     </Button>
                     {isEmpty ? null : (
                         <div className="absolute -top-1 -right-1">

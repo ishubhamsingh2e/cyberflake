@@ -39,7 +39,7 @@ function NavigationMobile() {
                     <SheetTrigger asChild>
                         <div className="flex flex-col items-center">
                             <Button variant={"ghost"} size={"icon"}>
-                                <Icons.bag className="h-6 w-6" />
+                                <Icons.bag className="h-6 w-6 hover:border-none" />
                             </Button>
                             <span className="text-sm">Cart</span>
                         </div>
