@@ -1,6 +1,7 @@
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 import Link from "next/link";
+import { apiClientServer } from "@/lib/localrequests";
 
 interface Props {
     className?: string;
@@ -12,16 +13,8 @@ interface Response {
     url: string;
 }
 
-async function getItems() {
-    const res = await fetch("https://api.cyberflake.in/hotbar", {
-        cache: "no-store",
-    });
-    const data: Response[] = await res.json();
-    return data;
-}
-
 async function HotBar({ className }: Props) {
-    const hotbar = await getItems();
+    const hotbar: Response[] = await apiClientServer.getHotBar();
 
     return (
         <ul

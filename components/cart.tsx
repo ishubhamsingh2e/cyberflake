@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { Dispatch, SetStateAction } from "react";
 import { Button } from "./ui/button";
 
-import { cn } from "@/lib/utils";
+import { cn, getAssest } from "@/lib/utils";
 import { apiClient } from "@/lib/api";
 import { getCookie } from "@/lib/cookie";
 import { CartItem } from "@/types/types";
@@ -162,7 +162,7 @@ export function CartItems({ Settotal, className }: CartItemsProps) {
                         <Card
                             id={item.id}
                             name={item.product.name}
-                            image={`https://api.cyberflake.in${item.product.thumbnail}`}
+                            image={getAssest(item.product.thumbnail)}
                             price={item.product.MRP}
                             discountPrice={item.product.regular_price}
                             quantity={item.quantity}

@@ -1,5 +1,6 @@
 "use client";
 
+import { getAssest } from "@/lib/utils";
 import Autoplay from "embla-carousel-autoplay";
 import useEmblaCarousel from "embla-carousel-react";
 
@@ -32,10 +33,7 @@ function Carousel({ banner, notice1, notice2 }: CarouselProps) {
                             className="w-full min-w-0 flex-shrink-0 flex-grow-0"
                             key={index}
                         >
-                            <img
-                                src={`https://api.cyberflake.in${item.image}`}
-                                alt={item.name}
-                            />
+                            <img src={getAssest(item.image)} alt={item.name} />
                         </div>
                     ))}
                 </div>
@@ -48,9 +46,7 @@ function Carousel({ banner, notice1, notice2 }: CarouselProps) {
                                 className="w-full min-w-0 flex-shrink-0 flex-grow-0"
                                 key={index}
                             >
-                                <img
-                                    src={`https://api.cyberflake.in${item.image}`}
-                                />
+                                <img src={getAssest(item.image)} />
                             </div>
                         ))}
                     </div>
@@ -62,9 +58,7 @@ function Carousel({ banner, notice1, notice2 }: CarouselProps) {
                                 className="w-full min-w-0 flex-shrink-0 flex-grow-0"
                                 key={index}
                             >
-                                <img
-                                    src={`https://api.cyberflake.in${item.image}`}
-                                />
+                                <img src={getAssest(item.image)} />
                             </div>
                         ))}
                     </div>

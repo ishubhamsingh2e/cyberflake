@@ -18,6 +18,7 @@ import { SpecsTable } from "./components/specs";
 
 import { redirect } from "next/navigation";
 import AddToCart from "./components/add-to-cart";
+import { apiClientServer } from "@/lib/localrequests";
 
 type Props = {
     params: {
@@ -58,21 +59,8 @@ function Description({ html, specifications }: DescriptionProp) {
     );
 }
 
-async function getProduct(sku: string) {
-    const query = await fetch(`https://api.cyberflake.in/product/${sku}/`, {
-        cache: "no-store",
-    });
-    const response = await query.json();
-
-    if (!response.product) {
-        redirect(`/404`);
-    }
-
-    return response.product;
-}
-
 async function ProductPage({ params: { sku } }: Props) {
-    const product = await getProduct(sku);
+    const product = await apiClientServer.getProduct(sku);
 
     metadata.title = `${product.name}`;
     metadata.description = product.full_description;

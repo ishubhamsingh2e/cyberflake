@@ -3,6 +3,7 @@
 import Card from "@/components/product-card";
 import React, { useEffect, useState } from "react";
 import { apiClient } from "@/lib/api";
+import { getAssest } from "@/lib/utils";
 
 function Wishlist() {
     const [data, setdata] = useState([]);
@@ -28,7 +29,7 @@ function Wishlist() {
                     title={item.product.name}
                     price={item.product.regular_price}
                     discount={item.product.MRP}
-                    image={`https://api.cyberflake.in${item.product.thumbnail}`}
+                    image={getAssest(item.product.thumbnail)}
                     link={`/product/${item.product.SKU}/`}
                     wishlist={false}
                     deleteWishlist={true}

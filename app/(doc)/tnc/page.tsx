@@ -1,16 +1,8 @@
+import { apiClientServer } from "@/lib/localrequests";
 import React from "react";
 
-async function getTNC() {
-    const res = await fetch("https://api.cyberflake.in/docs/tnc/", {
-        cache: "no-store",
-    });
-
-    const data = await res.json();
-    return data;
-}
-
 async function TNC() {
-    const data = await getTNC();
+    const data = await apiClientServer.getTNC();
     return (
         <div
             className="markdown"

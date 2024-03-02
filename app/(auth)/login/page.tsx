@@ -5,8 +5,9 @@ import { UserAuthForm } from "./user-auth-form";
 import { Icons } from "@/components/icons";
 
 export const metadata: Metadata = {
-    title: "Authentication",
-    description: "Authentication forms built using the components.",
+    title: "Sign In",
+    description:
+        "Sign in to your account to access exclusive features and content.",
 };
 
 export default function AuthenticationPage() {

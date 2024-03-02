@@ -5,6 +5,7 @@ import { AutoScroll } from "@splidejs/splide-extension-auto-scroll";
 
 import Card from "../../components/product-card";
 import { Product } from "@/types/types";
+import { getAssest } from "@/lib/utils";
 
 interface BestSellerProps {
     bestSellers: Product[];
@@ -43,7 +44,7 @@ function BestSeller({ bestSellers }: BestSellerProps) {
                                 title={product.name}
                                 price={product.regular_price}
                                 discount={product.MRP}
-                                image={`https://api.cyberflake.in${product.thumbnail}`}
+                                image={getAssest(product.thumbnail)}
                                 link={`/product/${product.SKU}/`}
                                 wishlist={true}
                             />
@@ -82,7 +83,7 @@ function BestSeller({ bestSellers }: BestSellerProps) {
                                 title={product.name}
                                 price={product.regular_price}
                                 discount={product.MRP}
-                                image={`https://api.cyberflake.in${product.thumbnail}`}
+                                image={getAssest(product.thumbnail)}
                                 link={`/product/${product.SKU}/`}
                                 wishlist={true}
                             />

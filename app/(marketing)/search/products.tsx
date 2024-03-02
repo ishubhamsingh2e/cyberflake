@@ -6,6 +6,8 @@ import { Icons } from "@/components/icons";
 import { Separator } from "@/components/ui/separator";
 import { Input } from "@/components/ui/input";
 import { useSearchParams } from "next/navigation";
+import { getAssest } from "@/lib/utils";
+import { apiClient } from "@/lib/api";
 
 function Products() {
     const [productsData, setProductsData] = useState([]);
@@ -18,18 +20,14 @@ function Products() {
     useEffect(() => {
         async function getProducts() {
             try {
-                const res = await fetch(
-                    `https://api.cyberflake.in/search/?query=${search.get("q")}`,
-                    { cache: "no-store" },
-                );
-                const data = await res.json();
-                setProductsData(data.products);
+                await apiClient.search(search.get("q")).then((res) => {
+                    setProductsData(res);
+                });
             } catch (error) {
                 console.error("Error fetching products:", error);
                 return [];
             }
         }
-
         getProducts().then(() => {
             setIsLoading(false);
         });
@@ -114,7 +112,7 @@ function Products() {
                                 brand={product.brand.name}
                                 price={product.regular_price}
                                 discount={product.MRP}
-                                image={`https://api.cyberflake.in${product.thumbnail}`}
+                                image={getAssest(product.thumbnail)}
                                 link={`product/${product.SKU}/`}
                                 wishlist={true}
                             />

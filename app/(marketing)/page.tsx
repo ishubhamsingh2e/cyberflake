@@ -1,17 +1,11 @@
 import Carousel from "@/components/hero-carousel";
 import Card from "@/components/product-card";
 import BestSeller from "@/app/(marketing)/best-seller";
-
-async function getProducts() {
-    const res = await fetch("https://api.cyberflake.in/home", {
-        cache: "no-store",
-    });
-    const data = await res.json();
-    return data;
-}
+import { apiClientServer } from "@/lib/localrequests";
+import { getAssest } from "@/lib/utils";
 
 async function Home() {
-    const data = await getProducts();
+    const data = await apiClientServer.getHome();
 
     return (
         <>
@@ -34,7 +28,7 @@ async function Home() {
                     <div className="grid-cols-2 gap-4 space-y-4 xl:grid">
                         <BestSeller bestSellers={data.best_seller} />
                         <video
-                            src={`https://api.cyberflake.in${data.video.video}`}
+                            src={getAssest(data.video.video)}
                             autoPlay
                             loop
                             muted
@@ -62,7 +56,7 @@ async function Home() {
                                 title={product.name}
                                 price={product.regular_price}
                                 discount={product.MRP}
-                                image={`https://api.cyberflake.in${product.thumbnail}`}
+                                image={getAssest(product.thumbnail)}
                                 link={`/product/${product.SKU}/`}
                                 wishlist={true}
                             />
@@ -89,7 +83,7 @@ async function Home() {
                                 title={product.name}
                                 price={product.regular_price}
                                 discount={product.MRP}
-                                image={`https://api.cyberflake.in${product.thumbnail}`}
+                                image={getAssest(product.thumbnail)}
                                 link={`/product/${product.SKU}/`}
                                 wishlist={true}
                             />

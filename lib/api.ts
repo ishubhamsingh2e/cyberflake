@@ -1,4 +1,5 @@
 import { getCookie } from "./cookie";
+import { URL } from "./env";
 
 class ApiClient {
     private baseUrl: string;
@@ -651,6 +652,31 @@ class ApiClient {
         });
     }
 
+    async search(query: string): Promise<any> {
+        return new Promise((resolve, reject) => {
+            const url = `${this.baseUrl}/search/?query=${query}`;
+            const xhr = new XMLHttpRequest();
+
+            xhr.open("GET", url, true);
+
+            xhr.onreadystatechange = () => {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    try {
+                        resolve(this.handleResponse(xhr));
+                    } catch (error) {
+                        this.handleError(error, reject);
+                    }
+                }
+            };
+
+            xhr.onerror = () => {
+                this.handleError(new Error("Network error"), reject);
+            };
+
+            xhr.send();
+        });
+    }
+
     async getOrders(): Promise<any> {
         return new Promise((resolve, reject) => {
             const url = `${this.baseUrl}/orders/`;
@@ -685,6 +711,6 @@ class ApiClient {
             xhr.send();
         });
     }
+
 }
-export const apiClient = new ApiClient("https://api.cyberflake.in");
-// export const apiClient = new ApiClient("http://127.0.0.1:8000");
+export const apiClient = new ApiClient(URL);

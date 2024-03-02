@@ -3,7 +3,7 @@
 import useEmblaCarousel from "embla-carousel-react";
 import React, { useState } from "react";
 import { Icons } from "../icons";
-import { cn } from "@/lib/utils";
+import { cn, getAssest } from "@/lib/utils";
 
 interface ThumbnailCarouselProps {
     images: {
@@ -68,7 +68,7 @@ function ThumbnailCarousel({ images, className }: ThumbnailCarouselProps) {
                                 className="flex-[0_0_100%] w-full  mx-4 overflow-hidden"
                             >
                                 <img
-                                    src={`https://api.cyberflake.in${slide.image}`}
+                                    src={getAssest(slide.image)}
                                     alt="sample"
                                     className="w-full h-full object-cover rounded-lg"
                                 />
@@ -92,7 +92,7 @@ function ThumbnailCarousel({ images, className }: ThumbnailCarouselProps) {
                                 }}
                             >
                                 <img
-                                    src={`https://api.cyberflake.in${thumb.image}`}
+                                    src={getAssest(thumb.image)}
                                     alt="thumbnail"
                                     className="object-cover rounded-sm"
                                 />
