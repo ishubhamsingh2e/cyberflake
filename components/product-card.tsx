@@ -58,7 +58,7 @@ function Card({
                         {title}
                     </h5>
                 </a>
-                <a href="#">
+                <a href={`/brand/${brand}`}>
                     <h6 className="text-sm tracking-tighter text-slate-400 underline-offset-1 hover:text-primary hover:underline">
                         {brand}
                     </h6>
