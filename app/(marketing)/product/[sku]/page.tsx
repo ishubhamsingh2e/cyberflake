@@ -16,7 +16,6 @@ import SKUButton from "./components/sku-button";
 import type { Metadata } from "next";
 import { SpecsTable } from "./components/specs";
 
-import { redirect } from "next/navigation";
 import AddToCart from "./components/add-to-cart";
 import { apiClientServer } from "@/lib/localrequests";
 
@@ -28,7 +27,7 @@ type Props = {
 
 export var metadata: Metadata = {
     title: "Unknow",
-    description: "Cyberflake is a social media platform for developers.",
+    description: "cyber flake product search page",
 };
 
 interface DescriptionProp {
