@@ -19,10 +19,20 @@ class ApiRequestHandlerServer {
         const url = `${this.baseUrl}/home/`;
         const defaultOptions: RequestInit = {
             method: 'GET',
-            cache: 'no-store',
-            headers: {
-                'Content-Type': 'application/json',
-            },
+            cache: 'no-store'
+        };
+
+        const requestOptions: RequestInit = { ...defaultOptions, ...options };
+
+        const res = await fetch(url, requestOptions);
+        return this.handleResponse(res);
+    }
+
+    public async getBrand(brand: string, options?: RequestInit): Promise<any> {
+        const url = `${this.baseUrl}/brand/${brand}/`;
+        const defaultOptions: RequestInit = {
+            method: 'GET',
+            cache: 'no-store'
         };
 
         const requestOptions: RequestInit = { ...defaultOptions, ...options };
