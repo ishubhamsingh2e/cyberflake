@@ -1,3 +1,5 @@
+import Orders from "@/app/(customer)/orders/page";
+
 export interface JwtPayload {
     name: string;
     phone: string;
@@ -56,4 +58,46 @@ export interface CartItem {
     product: Product;
     quantity: number;
     user: number;
+}
+
+export interface Order {
+    id: number;
+    order_id: string;
+    paid: boolean;
+    total_price: number;
+    status: string;
+    billing_and_shipping_address_are_same: boolean;
+    company_name: null | string;
+    GST: null | string;
+    billing_first_name: string;
+    billing_last_name: string;
+    billing_phone: string;
+    billing_address_l1: string;
+    billing_address_l2: null | string;
+    billing_pincode: string;
+    billing_city: string;
+    billing_state: string;
+    shipping_first_name: string;
+    shipping_last_name: string;
+    shipping_phone: string;
+    shipping_address_l1: string;
+    shipping_address_l2: null | string;
+    shipping_pincode: string;
+    shipping_city: string;
+    shipping_state: string;
+    created_at: string;
+    updated_at: string;
+    transaction: null | string;
+    payment_id: null | string;
+    user: number;
+};
+
+
+export interface OrderItems {
+    id: number,
+    quantity: number,
+    price: number,
+    created_at: string,
+    updated_at: string,
+    product: Product
 }

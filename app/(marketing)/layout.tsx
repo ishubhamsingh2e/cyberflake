@@ -38,7 +38,7 @@ export default async function MarketingLayout({
                     </div>
                 </div>
             </div>
-            <main className="ml-auto mr-auto w-11/12 flex-1 py-8 lg:pl-8 lg:pr-8 xl:w-10/12">
+            <main className="ml-auto mr-auto w-11/12 flex-1 py-8 lg:pl-8 lg:pr-8 xl:w-10/12 max-w-[1585px]">
                 {children}
             </main>
             <NavigationMobile />

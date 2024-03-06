@@ -25,7 +25,7 @@ function Carousel({ banner, notice1, notice2 }: CarouselProps) {
     const [rightBottom] = useEmblaCarousel({ loop: true }, [Autoplay()]);
 
     return (
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-1 justify-center">
             <div className="overflow-hidden rounded-md" ref={emblaRef}>
                 <div className="flex space-x-1 max-w-[1200px]">
                     {banner.map((item, index) => (

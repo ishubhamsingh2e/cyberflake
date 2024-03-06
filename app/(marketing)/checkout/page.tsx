@@ -44,6 +44,7 @@ function CheckOut() {
             image: "/logo.jpg",
             order_id: order_id,
             handler: async function (response) {
+                console.log(response);
                 apiClient
                     .VerifyRazorPay(
                         response.razorpay_payment_id,
@@ -51,6 +52,8 @@ function CheckOut() {
                         response.razorpay_signature,
                     )
                     .then((res) => {
+                        console.log(res);
+                        setPaymentIsProcessing(false);
                         if (res.error) {
                             toast({
                                 title: "Something Went Wrong!",
@@ -119,6 +122,13 @@ function CheckOut() {
         <div className="md:flex md:gap-12">
             <div className="md:w-1/3">
                 <Products />
+                <p className="text-sm text-slate-600 pt-3">
+                    If you canceled the pay or something went wrong while paying
+                    you can find you order{" "}
+                    <a className="text-primary" href="/orders">
+                        here
+                    </a>
+                </p>
                 <AlertDialog>
                     <AlertDialogTrigger asChild>
                         <Button className="w-full my-4 py-6">

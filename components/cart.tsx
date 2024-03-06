@@ -8,6 +8,7 @@ import { cn, getAssest } from "@/lib/utils";
 import { apiClient } from "@/lib/api";
 import { getCookie } from "@/lib/cookie";
 import { CartItem } from "@/types/types";
+import Loading from "./loading";
 
 interface CartCardProps {
     id: number;
@@ -101,6 +102,9 @@ interface CartItemsProps {
 }
 
 export function CartItems({ Settotal, className }: CartItemsProps) {
+    const [isLoading, setIsLoading] = useState(true);
+    const [cart, setCart] = useState<CartItem[]>([]);
+
     const fetchCartData = async () => {
         try {
             if (getCookie("JWT")) {
@@ -123,6 +127,7 @@ export function CartItems({ Settotal, className }: CartItemsProps) {
         try {
             const data = await fetchCartData();
             await setCart(data);
+            setIsLoading(false);
             cartTotal(data);
         } catch (error) {
             console.error("Error fetching data:", error);
@@ -133,7 +138,6 @@ export function CartItems({ Settotal, className }: CartItemsProps) {
         fetchDataAndSetState();
     }, []);
 
-    const [cart, setCart] = useState<CartItem[]>([]);
     const handleDelete = async (id: number) => {
         try {
             const res = await apiClient.deleteFromCart(id).then(() => {
@@ -155,22 +159,38 @@ export function CartItems({ Settotal, className }: CartItemsProps) {
     }
 
     return (
-        <div className={cn("overflow-y-auto flex-shrink-0", className)}>
-            <ul className="space-y-2 p-2">
-                {cart.map((item, index) => (
-                    <li key={index}>
-                        <Card
-                            id={item.id}
-                            name={item.product.name}
-                            image={getAssest(item.product.thumbnail)}
-                            price={item.product.MRP}
-                            discountPrice={item.product.regular_price}
-                            quantity={item.quantity}
-                            onDelete={handleDelete}
-                        />
-                    </li>
-                ))}
-            </ul>
-        </div>
+        <>
+            {isLoading ? (
+                <Loading className="mt-48" />
+            ) : (
+                <div className={cn("overflow-y-auto flex-shrink-0", className)}>
+                    {cart.length === 0 ? (
+                        <div className="flex justify-center items-center">
+                            <p className="mt-48">your cart is empty 😢!</p>
+                        </div>
+                    ) : (
+                        <ul className="space-y-2 p-2">
+                            {cart.map((item, index) => (
+                                <li key={index}>
+                                    <Card
+                                        id={item.id}
+                                        name={item.product.name}
+                                        image={getAssest(
+                                            item.product.thumbnail,
+                                        )}
+                                        price={item.product.MRP}
+                                        discountPrice={
+                                            item.product.regular_price
+                                        }
+                                        quantity={item.quantity}
+                                        onDelete={handleDelete}
+                                    />
+                                </li>
+                            ))}
+                        </ul>
+                    )}
+                </div>
+            )}
+        </>
     );
 }

@@ -53,7 +53,7 @@ function Card({
                 />
             </a>
             <div className="mt-2 px-2 pb-2 md:mt-4 md:px-5 md:pb-5">
-                <a href="#">
+                <a href={link}>
                     <h5 className="truncate-title-20 text-base tracking-tight lg:text-lg">
                         {title}
                     </h5>
