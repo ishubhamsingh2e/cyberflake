@@ -35,7 +35,6 @@ function CheckOut() {
     const [Razorpay] = useRazorpay();
 
     async function razorPay(amount: string, order_id: string) {
-        console.log(amount, order_id);
         var options = {
             key: "rzp_live_awbZPBbpVzLqi6",
             amount: amount,
@@ -125,7 +124,7 @@ function CheckOut() {
                 <p className="text-sm text-slate-600 pt-3">
                     If you canceled the pay or something went wrong while paying
                     you can find you order{" "}
-                    <a className="text-primary" href="/orders">
+                    <a className="text-primary underline" href="/orders">
                         here
                     </a>
                 </p>

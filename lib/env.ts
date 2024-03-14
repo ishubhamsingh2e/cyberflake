@@ -1,5 +1,5 @@
-export const DEBUG = true
-export const USE_IP = true
+export const DEBUG = false
+export const USE_IP = false
 export const DEBUG_URL = "http://127.0.0.1:8000"
 export const PRODUCTION_URL = "https://api.cyberflake.in"
 export const PRODUCTION_IP = "195.35.20.112"

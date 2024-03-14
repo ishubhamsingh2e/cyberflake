@@ -1,4 +1,4 @@
-import { DEBUG_URL } from "./env";
+import { URL } from "./env";
 
 class ApiRequestHandlerServer {
     private baseUrl: string;
@@ -123,4 +123,4 @@ class ApiRequestHandlerServer {
 }
 
 
-export const apiClientServer = new ApiRequestHandlerServer(DEBUG_URL);
+export const apiClientServer = new ApiRequestHandlerServer(URL);

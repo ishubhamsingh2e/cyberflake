@@ -23,9 +23,20 @@ export interface Brand {
     name: string;
 }
 
+export interface Image {
+    image: string;
+}
+
+export interface ProductSpecs {
+    id: number;
+    attribute: string;
+    value: string;
+}
+
 export interface Product {
     id: number;
     tags: Tag[];
+    images: Image[],
     categories: Category[];
     bundle_products: any[];
     brand: Brand;
@@ -48,6 +59,7 @@ export interface Product {
     length: null | number;
     breadth: null | number;
     height: null | number;
+    specifications: ProductSpecs[];
     text_rendered: string | null;
     upsell_products: Product[];
     cross_sell_products: Product[];

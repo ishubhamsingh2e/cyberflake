@@ -16,10 +16,8 @@ import { Order, OrderItems } from "@/types/types";
 import { apiClient } from "@/lib/api";
 import {
     Dialog,
-    DialogClose,
     DialogContent,
     DialogDescription,
-    DialogFooter,
     DialogHeader,
     DialogTitle,
     DialogTrigger,
@@ -150,13 +148,6 @@ function Action({ id }: ActionProps) {
                         <DialogContentRender id={id} />
                     </DialogDescription>
                 </DialogHeader>
-                <DialogFooter>
-                    <DialogClose asChild>
-                        <Button type="button" variant="secondary">
-                            Close
-                        </Button>
-                    </DialogClose>
-                </DialogFooter>
             </DialogContent>
         </Dialog>
     );

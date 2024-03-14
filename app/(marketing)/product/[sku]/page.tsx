@@ -18,6 +18,7 @@ import { SpecsTable } from "./components/specs";
 
 import AddToCart from "./components/add-to-cart";
 import { apiClientServer } from "@/lib/localrequests";
+import { Product } from "@/types/types";
 
 type Props = {
     params: {
@@ -59,7 +60,7 @@ function Description({ html, specifications }: DescriptionProp) {
 }
 
 async function ProductPage({ params: { sku } }: Props) {
-    const product = await apiClientServer.getProduct(sku);
+    const product: Product = await apiClientServer.getProduct(sku);
 
     metadata.title = `${product.name}`;
     metadata.description = product.full_description;
@@ -74,7 +75,12 @@ async function ProductPage({ params: { sku } }: Props) {
                 <div className="col-span-3 mt-6 flex flex-col gap-y-5 lg:mt-0 lg:gap-y-8">
                     <div className="flex justify-between">
                         <span>
-                            <a href="#">{product.brand.name}</a>
+                            <a
+                                className="hover:underline underline-offset-2"
+                                href={`/brand/${product.brand.name}`}
+                            >
+                                {product.brand.name}
+                            </a>
                         </span>
                         <TooltipProvider>
                             <Tooltip>
@@ -105,17 +111,50 @@ async function ProductPage({ params: { sku } }: Props) {
                             </div>
                         </div>
                     </div>
-                    <div className="flex gap-x-2">
-                        <span className="text-2xl font-bold lg:text-4xl">
-                            ₹
-                            {Intl.NumberFormat("en-IN").format(
-                                product.regular_price,
-                            )}
-                        </span>
-                        <span className="text-md text-slate-400 line-through">
-                            ₹{Intl.NumberFormat("en-IN").format(product.MRP)}
-                        </span>
-                    </div>
+                    {product.sale_price ? (
+                        <div className="space-y-2">
+                            <h2 className="font-semibold">
+                                Special Sale Price
+                            </h2>
+                            <div className="flex gap-x-2">
+                                <span className="text-2xl font-bold lg:text-4xl animate-text bg-gradient-to-r from-teal-500 via-purple-500 to-orange-500 bg-clip-text text-transparent">
+                                    ₹
+                                    {Intl.NumberFormat("en-IN").format(
+                                        product.sale_price,
+                                    )}
+                                </span>
+                                <span className="text-lg text-slate-400 line-through">
+                                    ₹
+                                    {Intl.NumberFormat("en-IN").format(
+                                        product.regular_price,
+                                    )}
+                                </span>
+                                <span className="text-sm text-slate-400 line-through">
+                                    ₹
+                                    {Intl.NumberFormat("en-IN").format(
+                                        product.MRP,
+                                    )}
+                                </span>
+                            </div>
+                        </div>
+                    ) : (
+                        <>
+                            <div className="flex gap-x-2">
+                                <span className="text-2xl font-bold lg:text-4xl">
+                                    ₹
+                                    {Intl.NumberFormat("en-IN").format(
+                                        product.regular_price,
+                                    )}
+                                </span>
+                                <span className="text-md text-slate-400 line-through">
+                                    ₹
+                                    {Intl.NumberFormat("en-IN").format(
+                                        product.MRP,
+                                    )}
+                                </span>
+                            </div>
+                        </>
+                    )}
                     <AddToCart id={product.id} inventory={product.Inventory} />
                     <div className="flex flex-col gap-5">
                         <Accordion type="single" collapsible className="w-full">
